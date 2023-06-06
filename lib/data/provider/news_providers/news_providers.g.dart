@@ -50,7 +50,7 @@ final newsFilterProvider =
 );
 
 typedef _$NewsFilter = AutoDisposeNotifier<NewsFilterModel>;
-String _$sourcesFilterHash() => r'ab28a1abf0cebc51fa1105f480199824a68f8d6b';
+String _$sourcesFilterHash() => r'6aef71d7475a697edef7a004b4b0f1204d7f13a6';
 
 /// See also [SourcesFilter].
 @ProviderFor(SourcesFilter)

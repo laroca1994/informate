@@ -28,7 +28,6 @@ final _builders = <_i1.BuilderApplication>[
     appliesBuilders: const [r'source_gen:combining_builder'],
   ),
   _i1.apply(
-<<<<<<< HEAD
     r'freezed:freezed',
     [_i4.freezed],
     _i1.toDependentsOf(r'freezed'),
@@ -37,87 +36,54 @@ final _builders = <_i1.BuilderApplication>[
   _i1.apply(
     r'json_serializable:json_serializable',
     [_i5.jsonSerializable],
-=======
-    [_i4.jsonSerializable],
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
     _i1.toDependentsOf(r'json_serializable'),
     hideOutput: true,
     appliesBuilders: const [r'source_gen:combining_builder'],
   ),
   _i1.apply(
     r'source_gen:combining_builder',
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
+    [_i6.combiningBuilder],
     _i1.toNoneByDefault(),
     hideOutput: false,
     appliesBuilders: const [r'source_gen:part_cleanup'],
   ),
   _i1.apply(
     r'reactive_forms_generator:reactive_forms_generator',
-<<<<<<< HEAD
     [_i7.reactiveFormsGenerator],
-=======
-    [_i6.reactiveFormsGenerator],
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
     _i1.toDependentsOf(r'reactive_forms_generator'),
     hideOutput: false,
   ),
   _i1.apply(
     r'auto_route_generator:auto_route_generator',
-<<<<<<< HEAD
     [_i8.autoRouteBuilder],
-=======
-    [_i7.autoRouteBuilder],
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
     _i1.toDependentsOf(r'auto_route_generator'),
     hideOutput: true,
   ),
   _i1.apply(
     r'auto_route_generator:auto_router_module_generator',
-<<<<<<< HEAD
     [_i8.autoRouterModuleBuilder],
-=======
-    [_i7.autoRouterModuleBuilder],
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
     _i1.toDependentsOf(r'auto_route_generator'),
     hideOutput: false,
   ),
   _i1.apply(
     r'auto_route_generator:auto_router_generator',
-<<<<<<< HEAD
     [_i8.autoRouterBuilder],
-=======
-    [_i7.autoRouterBuilder],
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
     _i1.toDependentsOf(r'auto_route_generator'),
     hideOutput: false,
   ),
   _i1.applyPostProcess(
     r'source_gen:part_cleanup',
-<<<<<<< HEAD
     _i6.partCleanup,
-=======
-    _i5.partCleanup,
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
   ),
 ];
 void main(
   List<String> args, [
-<<<<<<< HEAD
   _i9.SendPort? sendPort,
 ]) async {
   var result = await _i10.run(
-=======
-  _i8.SendPort? sendPort,
-]) async {
-  var result = await _i9.run(
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
     args,
     _builders,
   );
   sendPort?.send(result);
-<<<<<<< HEAD
   _i11.exitCode = result;
-=======
-  _i10.exitCode = result;
->>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
 }
