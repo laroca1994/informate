@@ -28,12 +28,16 @@ _$_ErrorModel _$$_ErrorModelFromJson(Map<String, dynamic> json) =>
           : ErrorData.fromJson(json['error'] as Map<String, dynamic>),
     );
 
+<<<<<<< HEAD
 Map<String, dynamic> _$$_ErrorModelToJson(_$_ErrorModel instance) =>
+=======
+Map<String, dynamic> _$ErrorModelToJson(ErrorModel instance) =>
     <String, dynamic>{
-      'error': instance.error,
-    };
-
+<<<<<<< HEAD
 _$_ErrorData _$$_ErrorDataFromJson(Map<String, dynamic> json) => _$_ErrorData(
+=======
+ErrorData _$ErrorDataFromJson(Map<String, dynamic> json) => ErrorData(
+>>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
       code: json['code'] as String?,
       message: json['message'] as String?,
       context: json['context'] == null
@@ -41,32 +45,52 @@ _$_ErrorData _$$_ErrorDataFromJson(Map<String, dynamic> json) => _$_ErrorData(
           : ErrorContext.fromJson(json['context'] as Map<String, dynamic>),
     );
 
+<<<<<<< HEAD
 Map<String, dynamic> _$$_ErrorDataToJson(_$_ErrorData instance) =>
     <String, dynamic>{
+=======
+Map<String, dynamic> _$ErrorDataToJson(ErrorData instance) => <String, dynamic>{
+>>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
       'code': instance.code,
       'message': instance.message,
       'context': instance.context,
     };
 
+<<<<<<< HEAD
 _$_ErrorContext _$$_ErrorContextFromJson(Map<String, dynamic> json) =>
     _$_ErrorContext(
       date: (json['date'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
 Map<String, dynamic> _$$_ErrorContextToJson(_$_ErrorContext instance) =>
+=======
+ErrorContext _$ErrorContextFromJson(Map<String, dynamic> json) => ErrorContext(
+      date: (json['date'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    );
+
+Map<String, dynamic> _$ErrorContextToJson(ErrorContext instance) =>
+>>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
     <String, dynamic>{
       'date': instance.date,
     };
 
+<<<<<<< HEAD
 _$_Pagination _$$_PaginationFromJson(Map<String, dynamic> json) =>
     _$_Pagination(
+=======
+Pagination _$PaginationFromJson(Map<String, dynamic> json) => Pagination(
+>>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
       limit: json['limit'] as int,
       offset: json['offset'] as int,
       count: json['count'] as int,
       total: json['total'] as int,
     );
 
+<<<<<<< HEAD
 Map<String, dynamic> _$$_PaginationToJson(_$_Pagination instance) =>
+=======
+Map<String, dynamic> _$PaginationToJson(Pagination instance) =>
+>>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
     <String, dynamic>{
       'limit': instance.limit,
       'offset': instance.offset,
@@ -74,6 +98,7 @@ Map<String, dynamic> _$$_PaginationToJson(_$_Pagination instance) =>
       'total': instance.total,
     };
 
+<<<<<<< HEAD
 _$_Article _$$_ArticleFromJson(Map<String, dynamic> json) => _$_Article(
       author: json['author'] as String?,
       title: json['title'] as String?,
@@ -89,6 +114,22 @@ _$_Article _$$_ArticleFromJson(Map<String, dynamic> json) => _$_Article(
 
 Map<String, dynamic> _$$_ArticleToJson(_$_Article instance) =>
     <String, dynamic>{
+=======
+Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
+      author: json['author'] as String,
+      title: json['title'] as String,
+      description: json['description'] as String,
+      url: json['url'] as String,
+      source: json['source'] as String,
+      image: json['image'] as String,
+      category: json['category'] as String,
+      language: json['language'] as String,
+      country: json['country'] as String,
+      publishedAt: json['published_at'] as String,
+    );
+
+Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
+>>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
       'author': instance.author,
       'title': instance.title,
       'description': instance.description,
@@ -100,6 +141,7 @@ Map<String, dynamic> _$$_ArticleToJson(_$_Article instance) =>
       'country': instance.country,
       'published_at': instance.publishedAt,
     };
+<<<<<<< HEAD
 
 _$_Source _$$_SourceFromJson(Map<String, dynamic> json) => _$_Source(
       code: json['code'] as String?,
@@ -118,3 +160,5 @@ Map<String, dynamic> _$$_SourceToJson(_$_Source instance) => <String, dynamic>{
       'language': instance.language,
       'url': instance.url,
     };
+=======
+>>>>>>> 6959d200b4823ccb0a08223dd4d459952b013c32
