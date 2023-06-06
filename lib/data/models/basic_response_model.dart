@@ -1,139 +1,119 @@
-import 'package:json_annotation/json_annotation.dart';
+// ignore_for_file: invalid_annotation_target
+
+import 'package:flutter/foundation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'basic_response_model.g.dart';
+part 'basic_response_model.freezed.dart';
 
-class BasicResponse {
-  final ErrorModel? error;
-  final Pagination? pagination;
-  final Article? data;
+@freezed
+class ErrorModel with _$ErrorModel {
+  const factory ErrorModel({
+    ErrorData? error,
+  }) = _ErrorModel;
 
-  BasicResponse({
-    this.error,
-    this.pagination,
-    this.data,
-  });
-}
-
-@JsonSerializable()
-class ErrorModel {
-  ErrorModel({
-    this.error,
-  });
-
-  ErrorData? error;
+  const ErrorModel._();
 
   factory ErrorModel.fromJson(Map<String, dynamic> json) =>
       _$ErrorModelFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ErrorModelToJson(this);
 }
 
-@JsonSerializable()
-class ErrorData {
-  ErrorData({
-    this.code,
-    this.message,
-    this.context,
-  });
+@freezed
+class ErrorData with _$ErrorData {
+  const factory ErrorData({
+    String? code,
+    String? message,
+    ErrorContext? context,
+  }) = _ErrorData;
 
-  String? code;
-  String? message;
-  ErrorContext? context;
+  const ErrorData._();
 
   factory ErrorData.fromJson(Map<String, dynamic> json) =>
       _$ErrorDataFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ErrorDataToJson(this);
 }
 
-@JsonSerializable()
-class ErrorContext {
-  ErrorContext({
-    this.date,
-  });
+@freezed
+class ErrorContext with _$ErrorContext {
+  const factory ErrorContext({
+    List<String>? date,
+  }) = _ErrorContext;
 
-  List<String>? date;
+  const ErrorContext._();
 
   factory ErrorContext.fromJson(Map<String, dynamic> json) =>
       _$ErrorContextFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ErrorContextToJson(this);
 }
 
-@JsonSerializable()
-class Pagination {
-  @JsonKey(name: 'limit')
-  int limit;
+@JsonSerializable(genericArgumentFactories: true)
+class BasicResponse<T>{
+   final Pagination pagination;
+   final List<T> data;
 
-  @JsonKey(name: 'offset')
-  int offset;
-
-  @JsonKey(name: 'count')
-  int count;
-
-  @JsonKey(name: 'total')
-  int total;
-
-  Pagination({
-    required this.limit,
-    required this.offset,
-    required this.count,
-    required this.total,
+   BasicResponse({
+    required this.pagination,
+    required this.data,
   });
+
+  factory BasicResponse.fromJson(
+    Map<String, dynamic> json,
+    T Function(Object? json) fromJsonT,
+  ) =>
+      _$BasicResponseFromJson(json, fromJsonT);
+
+  Map<String, dynamic> toJson(Object? Function(T value) toJsonT) =>
+      _$BasicResponseToJson(this, toJsonT);
+}
+
+@freezed
+class Pagination  with _$Pagination {
+
+ const factory Pagination({
+    required int limit,
+    required int offset,
+    required int count,
+    required int total,
+  }) = _Pagination;
+
+  const Pagination._();
 
   factory Pagination.fromJson(Map<String, dynamic> json) =>
       _$PaginationFromJson(json);
-
-  Map<String, dynamic> toJson() => _$PaginationToJson(this);
 }
 
-@JsonSerializable()
-class Article {
-  @JsonKey(name: 'author')
-  String author;
+@freezed
+class Article  with _$Article {
 
-  @JsonKey(name: 'title')
-  String title;
+const factory Article({
+    required String? author,
+    required String? title,
+    required String? description,
+    required String? url,
+    required String? source,
+    required String? image,
+    required String? category,
+    required String? language,
+    required String? country,
+   @JsonKey(name: 'published_at') required String? publishedAt,
+  }) = _Article;
 
-  @JsonKey(name: 'description')
-  String description;
-
-  @JsonKey(name: 'url')
-  String url;
-
-  @JsonKey(name: 'source')
-  String source;
-
-  @JsonKey(name: 'image')
-  String image;
-
-  @JsonKey(name: 'category')
-  String category;
-
-  @JsonKey(name: 'language')
-  String language;
-
-  @JsonKey(name: 'country')
-  String country;
-
-  @JsonKey(name: 'published_at')
-  String publishedAt;
-
-  Article({
-    required this.author,
-    required this.title,
-    required this.description,
-    required this.url,
-    required this.source,
-    required this.image,
-    required this.category,
-    required this.language,
-    required this.country,
-    required this.publishedAt,
-  });
+  const Article._();
 
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
+}
 
-  Map<String, dynamic> toJson() => _$ArticleToJson(this);
+@freezed
+class Source with _$Source {
+  const factory Source({
+    String? code,
+    String? name,
+    String? category,
+    String? country,
+    String? language,
+    String? url,
+  }) = _Source;
+
+  const Source._();
+
+  factory Source.fromJson(Map<String, dynamic> json) => _$SourceFromJson(json);
 }

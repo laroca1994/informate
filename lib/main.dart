@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:informate/presentation/router/router.dart';
 
 void main() {
@@ -12,8 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      routerConfig: _appRouter.config(), 
+    return ProviderScope(
+      child: MaterialApp.router(
+        routerConfig: _appRouter.config(), 
+      ),
     );
   }
 }

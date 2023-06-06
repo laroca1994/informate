@@ -2,18 +2,38 @@
 // JsonSerializableGenerator
 // **************************************************************************
 
-ErrorModel _$ErrorModelFromJson(Map<String, dynamic> json) => ErrorModel(
+BasicResponse<T> _$BasicResponseFromJson<T>(
+  Map<String, dynamic> json,
+  T Function(Object? json) fromJsonT,
+) =>
+    BasicResponse<T>(
+      pagination:
+          Pagination.fromJson(json['pagination'] as Map<String, dynamic>),
+      data: (json['data'] as List<dynamic>).map(fromJsonT).toList(),
+    );
+
+Map<String, dynamic> _$BasicResponseToJson<T>(
+  BasicResponse<T> instance,
+  Object? Function(T value) toJsonT,
+) =>
+    <String, dynamic>{
+      'pagination': instance.pagination,
+      'data': instance.data.map(toJsonT).toList(),
+    };
+
+_$_ErrorModel _$$_ErrorModelFromJson(Map<String, dynamic> json) =>
+    _$_ErrorModel(
       error: json['error'] == null
           ? null
           : ErrorData.fromJson(json['error'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ErrorModelToJson(ErrorModel instance) =>
+Map<String, dynamic> _$$_ErrorModelToJson(_$_ErrorModel instance) =>
     <String, dynamic>{
       'error': instance.error,
     };
 
-ErrorData _$ErrorDataFromJson(Map<String, dynamic> json) => ErrorData(
+_$_ErrorData _$$_ErrorDataFromJson(Map<String, dynamic> json) => _$_ErrorData(
       code: json['code'] as String?,
       message: json['message'] as String?,
       context: json['context'] == null
@@ -21,29 +41,32 @@ ErrorData _$ErrorDataFromJson(Map<String, dynamic> json) => ErrorData(
           : ErrorContext.fromJson(json['context'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$ErrorDataToJson(ErrorData instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ErrorDataToJson(_$_ErrorData instance) =>
+    <String, dynamic>{
       'code': instance.code,
       'message': instance.message,
       'context': instance.context,
     };
 
-ErrorContext _$ErrorContextFromJson(Map<String, dynamic> json) => ErrorContext(
+_$_ErrorContext _$$_ErrorContextFromJson(Map<String, dynamic> json) =>
+    _$_ErrorContext(
       date: (json['date'] as List<dynamic>?)?.map((e) => e as String).toList(),
     );
 
-Map<String, dynamic> _$ErrorContextToJson(ErrorContext instance) =>
+Map<String, dynamic> _$$_ErrorContextToJson(_$_ErrorContext instance) =>
     <String, dynamic>{
       'date': instance.date,
     };
 
-Pagination _$PaginationFromJson(Map<String, dynamic> json) => Pagination(
+_$_Pagination _$$_PaginationFromJson(Map<String, dynamic> json) =>
+    _$_Pagination(
       limit: json['limit'] as int,
       offset: json['offset'] as int,
       count: json['count'] as int,
       total: json['total'] as int,
     );
 
-Map<String, dynamic> _$PaginationToJson(Pagination instance) =>
+Map<String, dynamic> _$$_PaginationToJson(_$_Pagination instance) =>
     <String, dynamic>{
       'limit': instance.limit,
       'offset': instance.offset,
@@ -51,20 +74,21 @@ Map<String, dynamic> _$PaginationToJson(Pagination instance) =>
       'total': instance.total,
     };
 
-Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
-      author: json['author'] as String,
-      title: json['title'] as String,
-      description: json['description'] as String,
-      url: json['url'] as String,
-      source: json['source'] as String,
-      image: json['image'] as String,
-      category: json['category'] as String,
-      language: json['language'] as String,
-      country: json['country'] as String,
-      publishedAt: json['published_at'] as String,
+_$_Article _$$_ArticleFromJson(Map<String, dynamic> json) => _$_Article(
+      author: json['author'] as String?,
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      url: json['url'] as String?,
+      source: json['source'] as String?,
+      image: json['image'] as String?,
+      category: json['category'] as String?,
+      language: json['language'] as String?,
+      country: json['country'] as String?,
+      publishedAt: json['published_at'] as String?,
     );
 
-Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
+Map<String, dynamic> _$$_ArticleToJson(_$_Article instance) =>
+    <String, dynamic>{
       'author': instance.author,
       'title': instance.title,
       'description': instance.description,
@@ -75,4 +99,22 @@ Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{
       'language': instance.language,
       'country': instance.country,
       'published_at': instance.publishedAt,
+    };
+
+_$_Source _$$_SourceFromJson(Map<String, dynamic> json) => _$_Source(
+      code: json['code'] as String?,
+      name: json['name'] as String?,
+      category: json['category'] as String?,
+      country: json['country'] as String?,
+      language: json['language'] as String?,
+      url: json['url'] as String?,
+    );
+
+Map<String, dynamic> _$$_SourceToJson(_$_Source instance) => <String, dynamic>{
+      'code': instance.code,
+      'name': instance.name,
+      'category': instance.category,
+      'country': instance.country,
+      'language': instance.language,
+      'url': instance.url,
     };
