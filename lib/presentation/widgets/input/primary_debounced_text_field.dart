@@ -73,7 +73,7 @@ class _PrimaryDebouncedTextFieldState extends State<PrimaryDebouncedTextField> {
               children: [
                 widget.suffixIcon ?? Container(),
                 IconButton(
-                  icon: Icon(Icons.clear),
+                  icon: const Icon(Icons.clear),
                   onPressed: () {
                     widget.controller?.clear();
                     _handleOnChange('');
