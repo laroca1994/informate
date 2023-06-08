@@ -34,3 +34,4 @@ analyzer:
     - '**.gr.dart'
     - '**.gform.dart'
     - '**.freezed.dart'
+    - '**.gen.dart'

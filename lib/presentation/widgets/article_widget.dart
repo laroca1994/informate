@@ -1,24 +1,78 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:informate/data/const/const.dart';
+import 'package:informate/data/extensions/date_extensions.dart';
+import 'package:informate/data/extensions/string_extensions.dart';
 import 'package:informate/data/models/basic_response_model.dart';
+import 'package:informate/presentation/extensions/widget_extensions.dart';
+import 'package:informate/presentation/widgets/row_text_widget.dart';
+import 'package:informate/presentation/widgets/text/primary_description.dart';
+import 'package:informate/presentation/widgets/text/primary_title.dart';
 
 class ArticleWidget extends StatelessWidget {
-  const ArticleWidget(this.article, {super.key});
+  const ArticleWidget(this.article, {Key? key}) : super(key: key);
 
   final Article article;
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(article.title ?? '-'),
-      subtitle: Text(article.description ?? '-'),
-      leading: article.image == null ? null : Image.network(article.image!),
+    return GestureDetector(
       onTap: () {
         // Acción a realizar cuando se seleccione un artículo
         if (kDebugMode) {
           print('Artículo seleccionado: ${article.title}');
         }
       },
-    );
+      child: OrientationBuilder(builder: (context, orientation) {
+        final size = MediaQuery.of(context).size;
+        final width = orientation == Orientation.portrait
+            ? size.width * .30
+            : size.width * .2;
+        final height = orientation == Orientation.portrait
+            ? size.height * .2
+            : size.height * .8;
+        return Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            if (article.image != null)
+              Container(
+                margin: const EdgeInsets.only(right: 16.0),
+                child: Image.network(
+                  article.image!,
+                  width: width,
+                  height: height,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  RowTextWidget(
+                    first: article.source?.toUpperCase(),
+                    second: article.publishedAt?.formattedDate,
+                  ),
+                  const SizedBox(height: 10.0),
+                  PrimaryTitle(
+                    article.title ?? '-',
+                    overflow: TextOverflow.visible,
+                    maxLines: null,
+                  ),
+                  const SizedBox(height: 10.0),
+                  PrimaryDescription(article.description ?? '-'),
+                  const SizedBox(height: 10.0),
+                  RowTextWidget(
+                    first: '${article.author ?? '-'}, ${article.source}',
+                    second:
+                        'Categoria: ${article.category?.capitalizeFirstLetter() ?? '-'}',
+                    fontSizeFirst: fontSizeDefault,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        );
+      }),
+    ).symmetricPadding(15, 15);
   }
 }

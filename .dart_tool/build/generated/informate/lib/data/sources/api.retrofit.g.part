@@ -15,9 +15,29 @@ class _Api implements Api {
   String? baseUrl;
 
   @override
-  Future<BasicResponse<Article>> news() async {
+  Future<BasicResponse<Article>> news({
+    String sources = '',
+    String keywords = '',
+    String date = '',
+    String sort = '',
+    String countries = '',
+    String languages = '',
+    String categories = '',
+    int limit = 25,
+    int offset = 0,
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'sources': sources,
+      r'keywords': keywords,
+      r'date': date,
+      r'sort': sort,
+      r'countries': countries,
+      r'languages': languages,
+      r'categories': categories,
+      r'limit': limit,
+      r'offset': offset,
+    };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
@@ -43,11 +63,11 @@ class _Api implements Api {
   @override
   Future<BasicResponse<Source>> sources(
     String search, {
-    required String countries,
-    required String languages,
-    required String categories,
-    required int limit,
-    required int offset,
+    String countries = '',
+    String languages = '',
+    String categories = '',
+    int limit = 25,
+    int offset = 0,
   }) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{

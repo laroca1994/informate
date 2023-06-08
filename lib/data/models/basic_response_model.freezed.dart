@@ -749,7 +749,7 @@ mixin _$Article {
   String? get language => throw _privateConstructorUsedError;
   String? get country => throw _privateConstructorUsedError;
   @JsonKey(name: 'published_at')
-  String? get publishedAt => throw _privateConstructorUsedError;
+  DateTime? get publishedAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -771,7 +771,7 @@ abstract class $ArticleCopyWith<$Res> {
       String? category,
       String? language,
       String? country,
-      @JsonKey(name: 'published_at') String? publishedAt});
+      @JsonKey(name: 'published_at') DateTime? publishedAt});
 }
 
 /// @nodoc
@@ -838,7 +838,7 @@ class _$ArticleCopyWithImpl<$Res, $Val extends Article>
       publishedAt: freezed == publishedAt
           ? _value.publishedAt
           : publishedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -860,7 +860,7 @@ abstract class _$$_ArticleCopyWith<$Res> implements $ArticleCopyWith<$Res> {
       String? category,
       String? language,
       String? country,
-      @JsonKey(name: 'published_at') String? publishedAt});
+      @JsonKey(name: 'published_at') DateTime? publishedAt});
 }
 
 /// @nodoc
@@ -924,7 +924,7 @@ class __$$_ArticleCopyWithImpl<$Res>
       publishedAt: freezed == publishedAt
           ? _value.publishedAt
           : publishedAt // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as DateTime?,
     ));
   }
 }
@@ -968,7 +968,7 @@ class _$_Article extends _Article with DiagnosticableTreeMixin {
   final String? country;
   @override
   @JsonKey(name: 'published_at')
-  final String? publishedAt;
+  final DateTime? publishedAt;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -1034,17 +1034,17 @@ class _$_Article extends _Article with DiagnosticableTreeMixin {
 
 abstract class _Article extends Article {
   const factory _Article(
-          {required final String? author,
-          required final String? title,
-          required final String? description,
-          required final String? url,
-          required final String? source,
-          required final String? image,
-          required final String? category,
-          required final String? language,
-          required final String? country,
-          @JsonKey(name: 'published_at') required final String? publishedAt}) =
-      _$_Article;
+      {required final String? author,
+      required final String? title,
+      required final String? description,
+      required final String? url,
+      required final String? source,
+      required final String? image,
+      required final String? category,
+      required final String? language,
+      required final String? country,
+      @JsonKey(name: 'published_at')
+          required final DateTime? publishedAt}) = _$_Article;
   const _Article._() : super._();
 
   factory _Article.fromJson(Map<String, dynamic> json) = _$_Article.fromJson;
@@ -1069,7 +1069,7 @@ abstract class _Article extends Article {
   String? get country;
   @override
   @JsonKey(name: 'published_at')
-  String? get publishedAt;
+  DateTime? get publishedAt;
   @override
   @JsonKey(ignore: true)
   _$$_ArticleCopyWith<_$_Article> get copyWith =>

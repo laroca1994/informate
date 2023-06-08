@@ -1,8 +1,13 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:informate/data/provider/news_providers/news_providers.dart';
+import 'package:informate/data/models/basic_response_model.dart';
+import 'package:informate/data/provider/news_providers/commons_providers.dart';
+import 'package:informate/presentation/extensions/widget_extensions.dart';
 import 'package:informate/presentation/widgets/article_widget.dart';
+import 'package:informate/presentation/widgets/infinite_scroll/list.dart';
+import 'package:informate/presentation/widgets/input/primary_search.dart';
+import 'package:informate/presentation/widgets/loading_provider_widget.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -11,20 +16,37 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Consumer(
-        builder: (_, WidgetRef ref, __) {
-          final news = ref.watch(newsProvider);
-          return news.when(
-            data: (response) => ListView.builder(
-              itemCount: response.data.length,
-              itemBuilder: (context, index) => ArticleWidget(
-                response.data[index],
-              ),
-            ),
-            error: (error, _) => Text(error.toString()),
-            loading: () => const Center(child: CircularProgressIndicator()),
-          );
-        },
+      body: SafeArea(
+        child: Consumer(
+          builder: (_, WidgetRef ref, __) {
+            return Column(
+              children: [
+                PrimarySearch(
+                  filter: (filter) =>
+                      ref.read(newsFilterProvider.notifier).keywords(filter),
+                      showFilter: true,
+                ),
+                Expanded(
+                  child: LoadingProviderWidget<BasicResponse<Article>>(
+                    async: ref.watch(newsProvider),
+                    onRefreshIndicatot: () => ref.refresh(newsProvider.future),
+                    onRefresh: () => ref.refresh(newsProvider),
+                    data: (data) => PagedListViewWidget<Article>(
+                      invisibleItemsThreshold: 5,
+                      firstElements: data.data,
+                      firstPage: 1,
+                      totalPages:
+                          (data.pagination.total / data.pagination.limit).ceil(),
+                      fetch: (page) => ref.watch(newsFetchProvider(page).future),
+                      itemBuilder: (context, element, index) =>
+                          ArticleWidget(element),
+                    ),
+                  ),
+                ),
+              ],
+            ).horizontalPadding(10);
+          },
+        ),
       ),
     );
   }

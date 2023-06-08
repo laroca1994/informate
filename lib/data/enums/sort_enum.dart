@@ -2,9 +2,12 @@ import 'package:json_annotation/json_annotation.dart';
 
 enum SortEnum {
   @JsonValue('published_desc')
-  publishedDesc,
+  publishedDesc('published_desc'),
   @JsonValue('published_asc')
-  publishedAsc,
+  publishedAsc('published_asc'),
   @JsonValue('popularity')
-  popularity,
+  popularity('popularity');
+
+  const SortEnum(this.value);
+  final String value;
 }

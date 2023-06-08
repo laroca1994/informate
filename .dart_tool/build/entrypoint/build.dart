@@ -7,10 +7,11 @@ import 'package:freezed/builder.dart' as _i4;
 import 'package:json_serializable/builder.dart' as _i5;
 import 'package:source_gen/builder.dart' as _i6;
 import 'package:reactive_forms_generator/builder.dart' as _i7;
-import 'package:auto_route_generator/builder.dart' as _i8;
-import 'dart:isolate' as _i9;
-import 'package:build_runner/build_runner.dart' as _i10;
-import 'dart:io' as _i11;
+import 'package:flutter_gen_runner/flutter_gen_runner.dart' as _i8;
+import 'package:auto_route_generator/builder.dart' as _i9;
+import 'dart:isolate' as _i10;
+import 'package:build_runner/build_runner.dart' as _i11;
+import 'dart:io' as _i12;
 
 final _builders = <_i1.BuilderApplication>[
   _i1.apply(
@@ -54,20 +55,26 @@ final _builders = <_i1.BuilderApplication>[
     hideOutput: false,
   ),
   _i1.apply(
+    r'flutter_gen_runner:flutter_gen_runner',
+    [_i8.build],
+    _i1.toDependentsOf(r'flutter_gen_runner'),
+    hideOutput: false,
+  ),
+  _i1.apply(
     r'auto_route_generator:auto_route_generator',
-    [_i8.autoRouteBuilder],
+    [_i9.autoRouteBuilder],
     _i1.toDependentsOf(r'auto_route_generator'),
     hideOutput: true,
   ),
   _i1.apply(
     r'auto_route_generator:auto_router_module_generator',
-    [_i8.autoRouterModuleBuilder],
+    [_i9.autoRouterModuleBuilder],
     _i1.toDependentsOf(r'auto_route_generator'),
     hideOutput: false,
   ),
   _i1.apply(
     r'auto_route_generator:auto_router_generator',
-    [_i8.autoRouterBuilder],
+    [_i9.autoRouterBuilder],
     _i1.toDependentsOf(r'auto_route_generator'),
     hideOutput: false,
   ),
@@ -78,12 +85,12 @@ final _builders = <_i1.BuilderApplication>[
 ];
 void main(
   List<String> args, [
-  _i9.SendPort? sendPort,
+  _i10.SendPort? sendPort,
 ]) async {
-  var result = await _i10.run(
+  var result = await _i11.run(
     args,
     _builders,
   );
   sendPort?.send(result);
-  _i11.exitCode = result;
+  _i12.exitCode = result;
 }

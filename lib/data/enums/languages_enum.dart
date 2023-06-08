@@ -26,5 +26,5 @@ enum LanguagesEnum {
   @JsonValue('se')
   se,
   @JsonValue('zh')
-  zh,
+  zh;
 }

@@ -84,7 +84,9 @@ _$_Article _$$_ArticleFromJson(Map<String, dynamic> json) => _$_Article(
       category: json['category'] as String?,
       language: json['language'] as String?,
       country: json['country'] as String?,
-      publishedAt: json['published_at'] as String?,
+      publishedAt: json['published_at'] == null
+          ? null
+          : DateTime.parse(json['published_at'] as String),
     );
 
 Map<String, dynamic> _$$_ArticleToJson(_$_Article instance) =>
@@ -98,7 +100,7 @@ Map<String, dynamic> _$$_ArticleToJson(_$_Article instance) =>
       'category': instance.category,
       'language': instance.language,
       'country': instance.country,
-      'published_at': instance.publishedAt,
+      'published_at': instance.publishedAt?.toIso8601String(),
     };
 
 _$_Source _$$_SourceFromJson(Map<String, dynamic> json) => _$_Source(

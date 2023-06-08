@@ -48,6 +48,10 @@ dependencies:
   retrofit: ^4.0.1
   freezed: ^2.3.5
   freezed_annotation: ^2.2.0
+  infinite_scroll_pagination: ^4.0.0-dev.1
+  readmore: ^2.2.0
+  flutter_gen_runner: ^5.3.1
+  flutter_svg: ^2.0.6
 
 dev_dependencies:
   flutter_test:
@@ -81,8 +85,8 @@ flutter:
   # generate: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/svg/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
@@ -111,6 +115,9 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
 
-# flutter_gen:
-#   output: lib/core/gen/
-#   line_length: 80
+flutter_gen:
+  output: lib/core/gen/
+  line_length: 80
+  
+  integrations:
+    flutter_svg: true

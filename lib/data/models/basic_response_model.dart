@@ -93,7 +93,7 @@ const factory Article({
     required String? category,
     required String? language,
     required String? country,
-   @JsonKey(name: 'published_at') required String? publishedAt,
+   @JsonKey(name: 'published_at') required DateTime? publishedAt,
   }) = _Article;
 
   const Article._();
