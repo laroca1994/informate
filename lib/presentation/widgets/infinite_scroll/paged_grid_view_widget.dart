@@ -70,21 +70,31 @@ class _PagedGridViewWidgetState<T>
 
   @override
   Widget build(BuildContext context) {
-    return PagedGridView<int, T>(
-      pagingController: _pagingController,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: widget.crossAxisCount,
-        childAspectRatio: widget.childAspectRatio,
-        crossAxisSpacing: widget.crossAxisSpacing,
-      ),
-      addAutomaticKeepAlives: false,
-      showNewPageProgressIndicatorAsGridChild: false,
-      showNewPageErrorIndicatorAsGridChild: false,
-      builderDelegate: pagedChildBuilderDelegate(
-        context: context,
-        itemBuilder: widget.itemBuilder,
+    return NotificationListener<ScrollNotification>(
+      onNotification: (notification) {
+        if (notification is ScrollUpdateNotification) {
+          if (notification.metrics.axis == Axis.vertical) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          }
+        }
+        return false;
+      },
+      child: PagedGridView<int, T>(
         pagingController: _pagingController,
-      ),
-    ).symmetricPadding(10, 10);
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: widget.crossAxisCount,
+          childAspectRatio: widget.childAspectRatio,
+          crossAxisSpacing: widget.crossAxisSpacing,
+        ),
+        addAutomaticKeepAlives: false,
+        showNewPageProgressIndicatorAsGridChild: false,
+        showNewPageErrorIndicatorAsGridChild: false,
+        builderDelegate: pagedChildBuilderDelegate(
+          context: context,
+          itemBuilder: widget.itemBuilder,
+          pagingController: _pagingController,
+        ),
+      ).symmetricPadding(10, 10),
+    );
   }
 }

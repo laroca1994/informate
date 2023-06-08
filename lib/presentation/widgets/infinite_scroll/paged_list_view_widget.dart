@@ -14,7 +14,7 @@ class PagedListViewWidget<T> extends ConsumerStatefulWidget {
     this.fetch,
     this.childAspectRatio = 1,
     required this.itemBuilder,
-    this.invisibleItemsThreshold =2,
+    this.invisibleItemsThreshold = 2,
   });
 
   final Future<BasicResponse<T>> Function(int)? fetch;
@@ -66,14 +66,24 @@ class _PagedListViewWidgetState<T>
 
   @override
   Widget build(BuildContext context) {
-    return PagedListView<int, T>(
-      pagingController: _pagingController,
-      addAutomaticKeepAlives: false,
-      builderDelegate: pagedChildBuilderDelegate(
-        context: context,
-        itemBuilder: widget.itemBuilder,
+    return NotificationListener<ScrollNotification>(
+      onNotification: (notification) {
+        if (notification is ScrollUpdateNotification) {
+          if (notification.metrics.axis == Axis.vertical) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          }
+        }
+        return false;
+      },
+      child: PagedListView<int, T>(
         pagingController: _pagingController,
-      ),
-    ).symmetricPadding(10, 10);
+        addAutomaticKeepAlives: false,
+        builderDelegate: pagedChildBuilderDelegate(
+          context: context,
+          itemBuilder: widget.itemBuilder,
+          pagingController: _pagingController,
+        ),
+      ).symmetricPadding(10, 10),
+    );
   }
 }

@@ -27,19 +27,22 @@ class HomeScreen extends StatelessWidget {
                       showFilter: true,
                 ),
                 Expanded(
-                  child: LoadingProviderWidget<BasicResponse<Article>>(
-                    async: ref.watch(newsProvider),
-                    onRefreshIndicatot: () => ref.refresh(newsProvider.future),
-                    onRefresh: () => ref.refresh(newsProvider),
-                    data: (data) => PagedListViewWidget<Article>(
-                      invisibleItemsThreshold: 5,
-                      firstElements: data.data,
-                      firstPage: 1,
-                      totalPages:
-                          (data.pagination.total / data.pagination.limit).ceil(),
-                      fetch: (page) => ref.watch(newsFetchProvider(page).future),
-                      itemBuilder: (context, element, index) =>
-                          ArticleWidget(element),
+                  child: GestureDetector(
+                    onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+                    child: LoadingProviderWidget<BasicResponse<Article>>(
+                      async: ref.watch(newsProvider),
+                      onRefreshIndicatot: () => ref.refresh(newsProvider.future),
+                      onRefresh: () => ref.refresh(newsProvider),
+                      data: (data) => PagedListViewWidget<Article>(
+                        invisibleItemsThreshold: 5,
+                        firstElements: data.data,
+                        firstPage: 1,
+                        totalPages:
+                            (data.pagination.total / data.pagination.limit).ceil(),
+                        fetch: (page) => ref.watch(newsFetchProvider(page).future),
+                        itemBuilder: (context, element, index) =>
+                            ArticleWidget(element),
+                      ),
                     ),
                   ),
                 ),
