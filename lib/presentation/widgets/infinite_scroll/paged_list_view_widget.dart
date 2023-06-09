@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:informate/data/models/basic_response_model.dart';
-import 'package:informate/presentation/extensions/widget_extensions.dart';
 import 'package:informate/presentation/widgets/infinite_scroll/utils/utils.dart';
 
 class PagedListViewWidget<T> extends ConsumerStatefulWidget {
@@ -83,7 +82,7 @@ class _PagedListViewWidgetState<T>
           itemBuilder: widget.itemBuilder,
           pagingController: _pagingController,
         ),
-      ).symmetricPadding(10, 10),
+      ),
     );
   }
 }

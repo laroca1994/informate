@@ -9,11 +9,11 @@ class PrimarySearch extends StatefulWidget {
     super.key,
     this.showFilter = false,
     this.onPressed,
-    // this.filter = '',
+   required this.labelText,
     required this.filter,
   });
   final bool showFilter;
-  // final String filter;
+  final String labelText;
   final void Function()? onPressed;
   final void Function(String) filter;
 
@@ -45,8 +45,8 @@ class _PrimarySearchState extends State<PrimarySearch> {
           child: Consumer(
             builder: (_, ref, __) {
               return PrimaryDebouncedTextField(
-                labelText: 'Buscar noticia',
-                hintText: "Escriba ",
+                labelText: widget.labelText,
+                hintText: "Escriba lo que desea buscar",
                 controller: controller,
                 padding: 15,
                 onChanged: (value) {

@@ -1,3 +1,4 @@
+import 'package:informate/data/enums/categories_enum.dart';
 import 'package:informate/data/extensions/date_extensions.dart';
 import 'package:informate/data/models/basic_response_model.dart';
 import 'package:informate/data/models/filter_model.dart';
@@ -9,27 +10,17 @@ part 'commons_providers.g.dart';
 @riverpod
 class NewsFilter extends _$NewsFilter {
   @override
-  NewsFilterModel build() => const NewsFilterModel();
-
-  void updateValue(NewsFilterModel model) => state = state.copyWith(
-        categories: model.categories,
-        countries: model.countries,
-        languages: model.languages,
-        sort: model.sort,
-        offset: model.offset,
-        limit: model.limit,
-        date: model.date,
-        keywords: model.keywords,
-        sources: model.sources,
-      );
+  NewsFilterModel build(CategoriesEnum category) =>
+      NewsFilterModel(categories: category.isAll ? [] : [category]);
 
   void keywords(String value) => state = state.copyWith(keywords: value);
 }
 
 @riverpod
-Future<BasicResponse<Article>> news(NewsRef ref) async {
+Future<BasicResponse<Article>> news(
+    NewsRef ref, CategoriesEnum category) async {
   final api = ref.watch(apiProvider);
-  final filter = ref.watch(newsFilterProvider);
+  final filter = ref.watch(newsFilterProvider(category));
   return api.news(
     categories: filter.categories.map((e) => e.name).join(','),
     countries: filter.countries.join(','),
@@ -48,7 +39,7 @@ Future<BasicResponse<Article>> newsFetch(
   NewsFetchRef ref,
   int pageNo,
 ) async {
-  final filter = ref.watch(newsFilterProvider);
+  final filter = ref.watch(newsFilterProvider(CategoriesEnum.general));
   final api = ref.watch(apiProvider);
   final response = await api.news(
     categories: filter.categories.map((e) => e.name).join(','),

@@ -5,7 +5,9 @@ import 'package:informate/data/extensions/date_extensions.dart';
 import 'package:informate/data/extensions/string_extensions.dart';
 import 'package:informate/data/models/basic_response_model.dart';
 import 'package:informate/presentation/extensions/widget_extensions.dart';
+import 'package:informate/presentation/widgets/images/primary_network_image.dart';
 import 'package:informate/presentation/widgets/row_text_widget.dart';
+import 'package:informate/presentation/widgets/source_image_widget.dart';
 import 'package:informate/presentation/widgets/text/primary_description.dart';
 import 'package:informate/presentation/widgets/text/primary_title.dart';
 
@@ -37,20 +39,26 @@ class ArticleWidget extends StatelessWidget {
             if (article.image != null)
               Container(
                 margin: const EdgeInsets.only(right: 16.0),
-                child: Image.network(
-                  article.image!,
+                child: PrimaryNetworkImage(
+                  imageUrl: article.image!,
                   width: width,
                   height: height,
-                  fit: BoxFit.cover,
                 ),
               ),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  RowTextWidget(
-                    first: article.source?.toUpperCase(),
-                    second: article.publishedAt?.formattedDate,
+                  Row(
+                    children: [
+                      SourceImageWidget(sourceUrl: article.url ?? ''),
+                      Expanded(
+                        child: RowTextWidget(
+                          first: article.source?.toUpperCase(),
+                          second: article.publishedAt?.formattedDate,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 10.0),
                   PrimaryTitle(
@@ -62,7 +70,8 @@ class ArticleWidget extends StatelessWidget {
                   PrimaryDescription(article.description ?? '-'),
                   const SizedBox(height: 10.0),
                   RowTextWidget(
-                    first: '${article.author ?? '-'}, ${article.source}',
+                    first:
+                        '${article.author == null ? '' : ('${article.author!},')} ${article.source}',
                     second:
                         'Categoria: ${article.category?.capitalizeFirstLetter() ?? '-'}',
                     fontSizeFirst: fontSizeDefault,

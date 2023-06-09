@@ -73,6 +73,7 @@ const _$LanguagesEnumEnumMap = {
 };
 
 const _$CategoriesEnumEnumMap = {
+  CategoriesEnum.all: '',
   CategoriesEnum.general: 'general',
   CategoriesEnum.business: 'business',
   CategoriesEnum.entertainment: 'entertainment',

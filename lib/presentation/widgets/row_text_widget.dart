@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:informate/data/const/const.dart';
 import 'package:informate/presentation/widgets/text/primary_bold_text.dart';
 import 'package:informate/presentation/widgets/text/primary_title.dart';
 
@@ -23,7 +24,7 @@ class RowTextWidget extends StatelessWidget {
             children: [
               Expanded(
                 child: PrimaryTitle(
-                  first ?? '-',
+                  first ?? '',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                   fontSize: fontSizeFirst,
@@ -34,7 +35,8 @@ class RowTextWidget extends StatelessWidget {
         ),
         Flexible(
             child: PrimaryBoldText(
-          second ?? '-',
+          second ?? '',
+          fontSize: fontSizeDefault-5,
         )),
       ],
     );

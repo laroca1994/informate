@@ -1,6 +1,8 @@
 import 'package:json_annotation/json_annotation.dart';
 
 enum CategoriesEnum {
+  @JsonValue('')
+  all('all'),
   @JsonValue('general')
   general('general'),
   @JsonValue('business')
@@ -19,4 +21,6 @@ enum CategoriesEnum {
 
   const CategoriesEnum(this.value);
   final String value;
+
+  bool get isAll => this == CategoriesEnum.all;
 }

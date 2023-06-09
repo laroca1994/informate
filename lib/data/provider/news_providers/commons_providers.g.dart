@@ -6,21 +6,7 @@ part of 'commons_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$newsHash() => r'b750f9502b90e9e1d59aab6caf6cceacfcf38c3e';
-
-/// See also [news].
-@ProviderFor(news)
-final newsProvider = AutoDisposeFutureProvider<BasicResponse<Article>>.internal(
-  news,
-  name: r'newsProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$newsHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef NewsRef = AutoDisposeFutureProviderRef<BasicResponse<Article>>;
-String _$newsFetchHash() => r'f243e816bfd04ece0adad2f5a2930d29dde264b6';
+String _$newsHash() => r'df4bfa3e15176a87a426d751399e29f3dde74097';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -43,6 +29,85 @@ class _SystemHash {
   }
 }
 
+typedef NewsRef = AutoDisposeFutureProviderRef<BasicResponse<Article>>;
+
+/// See also [news].
+@ProviderFor(news)
+const newsProvider = NewsFamily();
+
+/// See also [news].
+class NewsFamily extends Family<AsyncValue<BasicResponse<Article>>> {
+  /// See also [news].
+  const NewsFamily();
+
+  /// See also [news].
+  NewsProvider call(
+    CategoriesEnum category,
+  ) {
+    return NewsProvider(
+      category,
+    );
+  }
+
+  @override
+  NewsProvider getProviderOverride(
+    covariant NewsProvider provider,
+  ) {
+    return call(
+      provider.category,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'newsProvider';
+}
+
+/// See also [news].
+class NewsProvider extends AutoDisposeFutureProvider<BasicResponse<Article>> {
+  /// See also [news].
+  NewsProvider(
+    this.category,
+  ) : super.internal(
+          (ref) => news(
+            ref,
+            category,
+          ),
+          from: newsProvider,
+          name: r'newsProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product') ? null : _$newsHash,
+          dependencies: NewsFamily._dependencies,
+          allTransitiveDependencies: NewsFamily._allTransitiveDependencies,
+        );
+
+  final CategoriesEnum category;
+
+  @override
+  bool operator ==(Object other) {
+    return other is NewsProvider && other.category == category;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, category.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+String _$newsFetchHash() => r'903f081f56b583d6b8975cc26bf6b54180a27b95';
 typedef NewsFetchRef = AutoDisposeFutureProviderRef<BasicResponse<Article>>;
 
 /// See also [newsFetch].
@@ -205,21 +270,103 @@ class SourcesProvider extends AutoDisposeFutureProvider<BasicResponse<Source>> {
   }
 }
 
-String _$newsFilterHash() => r'b44cf748b30f8b87a5ebc4d762fc7850574b0578';
+String _$newsFilterHash() => r'da95c322b343e76086b84924ae0ddc23694b881d';
+
+abstract class _$NewsFilter
+    extends BuildlessAutoDisposeNotifier<NewsFilterModel> {
+  late final CategoriesEnum category;
+
+  NewsFilterModel build(
+    CategoriesEnum category,
+  );
+}
 
 /// See also [NewsFilter].
 @ProviderFor(NewsFilter)
-final newsFilterProvider =
-    AutoDisposeNotifierProvider<NewsFilter, NewsFilterModel>.internal(
-  NewsFilter.new,
-  name: r'newsFilterProvider',
-  debugGetCreateSourceHash:
-      const bool.fromEnvironment('dart.vm.product') ? null : _$newsFilterHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
+const newsFilterProvider = NewsFilterFamily();
 
-typedef _$NewsFilter = AutoDisposeNotifier<NewsFilterModel>;
+/// See also [NewsFilter].
+class NewsFilterFamily extends Family<NewsFilterModel> {
+  /// See also [NewsFilter].
+  const NewsFilterFamily();
+
+  /// See also [NewsFilter].
+  NewsFilterProvider call(
+    CategoriesEnum category,
+  ) {
+    return NewsFilterProvider(
+      category,
+    );
+  }
+
+  @override
+  NewsFilterProvider getProviderOverride(
+    covariant NewsFilterProvider provider,
+  ) {
+    return call(
+      provider.category,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'newsFilterProvider';
+}
+
+/// See also [NewsFilter].
+class NewsFilterProvider
+    extends AutoDisposeNotifierProviderImpl<NewsFilter, NewsFilterModel> {
+  /// See also [NewsFilter].
+  NewsFilterProvider(
+    this.category,
+  ) : super.internal(
+          () => NewsFilter()..category = category,
+          from: newsFilterProvider,
+          name: r'newsFilterProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$newsFilterHash,
+          dependencies: NewsFilterFamily._dependencies,
+          allTransitiveDependencies:
+              NewsFilterFamily._allTransitiveDependencies,
+        );
+
+  final CategoriesEnum category;
+
+  @override
+  bool operator ==(Object other) {
+    return other is NewsFilterProvider && other.category == category;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, category.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+
+  @override
+  NewsFilterModel runNotifierBuild(
+    covariant NewsFilter notifier,
+  ) {
+    return notifier.build(
+      category,
+    );
+  }
+}
+
 String _$sourcesFilterHash() => r'6aef71d7475a697edef7a004b4b0f1204d7f13a6';
 
 /// See also [SourcesFilter].

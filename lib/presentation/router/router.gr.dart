@@ -15,13 +15,61 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    NewsRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<NewsRouteArgs>(orElse: () => const NewsRouteArgs());
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: NewsScreen(
+          key: args.key,
+          category: args.category,
+        ),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const HomeScreen(),
       );
-    }
+    },
   };
+}
+
+/// generated route for
+/// [NewsScreen]
+class NewsRoute extends PageRouteInfo<NewsRouteArgs> {
+  NewsRoute({
+    Key? key,
+    CategoriesEnum category = CategoriesEnum.all,
+    List<PageRouteInfo>? children,
+  }) : super(
+          NewsRoute.name,
+          args: NewsRouteArgs(
+            key: key,
+            category: category,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'NewsRoute';
+
+  static const PageInfo<NewsRouteArgs> page = PageInfo<NewsRouteArgs>(name);
+}
+
+class NewsRouteArgs {
+  const NewsRouteArgs({
+    this.key,
+    this.category = CategoriesEnum.all,
+  });
+
+  final Key? key;
+
+  final CategoriesEnum category;
+
+  @override
+  String toString() {
+    return 'NewsRouteArgs{key: $key, category: $category}';
+  }
 }
 
 /// generated route for

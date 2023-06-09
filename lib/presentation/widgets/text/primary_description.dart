@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:informate/data/const/const.dart';
 import 'package:readmore/readmore.dart';
 
 class PrimaryDescription extends StatelessWidget {
@@ -21,7 +22,7 @@ class PrimaryDescription extends StatelessWidget {
       trimExpandedText: 'Ver menos',
       moreStyle: style,
       lessStyle: style,
-      style: const TextStyle(fontSize: 16),
+      style: const TextStyle(fontSize: fontSizeDefault),
     );
   }
 }

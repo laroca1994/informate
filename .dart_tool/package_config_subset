@@ -102,6 +102,10 @@ crypto
 2.19
 file:///Users/home/.pub-cache/hosted/pub.dev/crypto-3.0.3/
 file:///Users/home/.pub-cache/hosted/pub.dev/crypto-3.0.3/lib/
+csslib
+2.19
+file:///Users/home/.pub-cache/hosted/pub.dev/csslib-1.0.0/
+file:///Users/home/.pub-cache/hosted/pub.dev/csslib-1.0.0/lib/
 cupertino_icons
 2.12
 file:///Users/home/.pub-cache/hosted/pub.dev/cupertino_icons-1.0.5/
@@ -194,6 +198,10 @@ hotreloader
 2.12
 file:///Users/home/.pub-cache/hosted/pub.dev/hotreloader-3.0.6/
 file:///Users/home/.pub-cache/hosted/pub.dev/hotreloader-3.0.6/lib/
+html
+2.19
+file:///Users/home/.pub-cache/hosted/pub.dev/html-0.15.4/
+file:///Users/home/.pub-cache/hosted/pub.dev/html-0.15.4/lib/
 http_multi_server
 2.12
 file:///Users/home/.pub-cache/hosted/pub.dev/http_multi_server-3.2.1/

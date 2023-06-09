@@ -11,6 +11,26 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/services.dart';
 
+class $AssetsGifGen {
+  const $AssetsGifGen();
+
+  /// File path: assets/gif/cargando.gif
+  AssetGenImage get cargando => const AssetGenImage('assets/gif/cargando.gif');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [cargando];
+}
+
+class $AssetsJpegGen {
+  const $AssetsJpegGen();
+
+  /// File path: assets/jpeg/no_image.jpeg
+  AssetGenImage get noImage => const AssetGenImage('assets/jpeg/no_image.jpeg');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [noImage];
+}
+
 class $AssetsSvgGen {
   const $AssetsSvgGen();
 
@@ -27,6 +47,8 @@ class $AssetsSvgGen {
 class Assets {
   Assets._();
 
+  static const $AssetsGifGen gif = $AssetsGifGen();
+  static const $AssetsJpegGen jpeg = $AssetsJpegGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
 }
 
