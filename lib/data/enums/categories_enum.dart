@@ -1,26 +1,28 @@
+import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 enum CategoriesEnum {
   @JsonValue('')
-  all('all'),
+  all('all', Icons.apps),
   @JsonValue('general')
-  general('general'),
+  general('general', Icons.all_inclusive),
   @JsonValue('business')
-  business('business'),
+  business('business', Icons.business),
   @JsonValue('entertainment')
-  entertainment('entertainment'),
+  entertainment('entertainment', Icons.movie),
   @JsonValue('health')
-  health('health'),
+  health('health', Icons.health_and_safety),
   @JsonValue('science')
-  science('science'),
+  science('science', Icons.science),
   @JsonValue('sports')
-  sports('sports'),
+  sports('sports', Icons.sports),
   @JsonValue('technology')
-  technology('technology'),
+  technology('technology', Icons.science),
   ;
 
-  const CategoriesEnum(this.value);
+  const CategoriesEnum(this.value, this.iconData);
   final String value;
+  final IconData iconData;
 
   bool get isAll => this == CategoriesEnum.all;
 }

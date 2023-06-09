@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:informate/data/enums/categories_enum.dart';
 import 'package:informate/data/extensions/date_extensions.dart';
 import 'package:informate/data/models/basic_response_model.dart';
@@ -10,10 +12,12 @@ part 'commons_providers.g.dart';
 @riverpod
 class NewsFilter extends _$NewsFilter {
   @override
-  NewsFilterModel build(CategoriesEnum category) =>
-      NewsFilterModel(categories: category.isAll ? [] : [category]);
+  NewsFilterModel build(CategoriesEnum category) {
+    return NewsFilterModel(categories: category.isAll ? [] : [category]);
+  }
 
-  void keywords(String value) => state = state.copyWith(keywords: value);
+  void searchKeywords(String keywords) =>
+      state = state.copyWith(keywords: keywords);
 }
 
 @riverpod

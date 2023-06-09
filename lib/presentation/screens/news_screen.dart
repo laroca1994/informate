@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:informate/data/enums/categories_enum.dart';
 import 'package:informate/data/models/basic_response_model.dart';
-import 'package:informate/data/provider/news_providers/commons_providers.dart';
+import 'package:informate/data/provider/commons_providers/commons_providers.dart';
 import 'package:informate/presentation/extensions/widget_extensions.dart';
 import 'package:informate/presentation/widgets/article_widget.dart';
 import 'package:informate/presentation/widgets/infinite_scroll/list.dart';
@@ -25,14 +25,6 @@ class NewsScreen extends StatelessWidget {
         builder: (_, WidgetRef ref, __) {
           return Column(
             children: [
-              // PrimarySearch(
-              //   labelText:
-              //       'Buscar noticia en ${category.value.capitalizeFirstLetter()}',
-              //   filter: (filter) => ref
-              //       .read(newsFilterProvider(category).notifier)
-              //       .keywords(filter),
-              //   showFilter: true,
-              // ).verticalPadding(10),
               Expanded(
                 child: GestureDetector(
                   onTap: () => FocusManager.instance.primaryFocus?.unfocus(),

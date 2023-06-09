@@ -71,7 +71,6 @@ class _PrimaryDebouncedTextFieldState extends State<PrimaryDebouncedTextField> {
           ? Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                widget.suffixIcon ?? Container(),
                 IconButton(
                   icon: const Icon(Icons.clear),
                   onPressed: () {
@@ -79,6 +78,7 @@ class _PrimaryDebouncedTextFieldState extends State<PrimaryDebouncedTextField> {
                     _handleOnChange('');
                   },
                 ),
+                widget.suffixIcon ?? Container(),
               ],
             )
           : widget.suffixIcon,

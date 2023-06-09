@@ -270,7 +270,7 @@ class SourcesProvider extends AutoDisposeFutureProvider<BasicResponse<Source>> {
   }
 }
 
-String _$newsFilterHash() => r'da95c322b343e76086b84924ae0ddc23694b881d';
+String _$newsFilterHash() => r'4930100998189e42c57cde70306237227ffa609f';
 
 abstract class _$NewsFilter
     extends BuildlessAutoDisposeNotifier<NewsFilterModel> {

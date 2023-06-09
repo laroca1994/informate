@@ -17,18 +17,28 @@ class $AssetsGifGen {
   /// File path: assets/gif/cargando.gif
   AssetGenImage get cargando => const AssetGenImage('assets/gif/cargando.gif');
 
+  /// File path: assets/gif/cargando2.gif
+  AssetGenImage get cargando2 =>
+      const AssetGenImage('assets/gif/cargando2.gif');
+
   /// List of all assets
-  List<AssetGenImage> get values => [cargando];
+  List<AssetGenImage> get values => [cargando, cargando2];
 }
 
 class $AssetsJpegGen {
   const $AssetsJpegGen();
 
-  /// File path: assets/jpeg/no_image.jpeg
-  AssetGenImage get noImage => const AssetGenImage('assets/jpeg/no_image.jpeg');
+  /// File path: assets/jpeg/no_image-removebg-preview.png
+  AssetGenImage get noImageRemovebgPreview =>
+      const AssetGenImage('assets/jpeg/no_image-removebg-preview.png');
+
+  /// File path: assets/jpeg/no_image_2-removebg-preview.png
+  AssetGenImage get noImage2RemovebgPreview =>
+      const AssetGenImage('assets/jpeg/no_image_2-removebg-preview.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [noImage];
+  List<AssetGenImage> get values =>
+      [noImageRemovebgPreview, noImage2RemovebgPreview];
 }
 
 class $AssetsSvgGen {

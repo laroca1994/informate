@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:informate/core/gen/assets.gen.dart';
-import 'package:informate/presentation/extensions/widget_extensions.dart';
 import 'package:informate/presentation/widgets/input/primary_debounced_text_field.dart';
 
 class PrimarySearch extends StatefulWidget {
@@ -9,13 +7,15 @@ class PrimarySearch extends StatefulWidget {
     super.key,
     this.showFilter = false,
     this.onPressed,
-   required this.labelText,
+    required this.labelText,
     required this.filter,
+    this.prefixIcon,
   });
   final bool showFilter;
   final String labelText;
   final void Function()? onPressed;
   final void Function(String) filter;
+  final Widget? prefixIcon;
 
   @override
   State<PrimarySearch> createState() => _PrimarySearchState();
@@ -49,6 +49,14 @@ class _PrimarySearchState extends State<PrimarySearch> {
                 hintText: "Escriba lo que desea buscar",
                 controller: controller,
                 padding: 15,
+                prefixIcon: widget.prefixIcon,
+                suffixIcon: widget.showFilter
+                    ? IconButton(
+                        icon: const Icon(Icons.tune),
+                        splashRadius: 25,
+                        onPressed: widget.onPressed,
+                      )
+                    : null,
                 onChanged: (value) {
                   widget.filter(value);
                   controller
@@ -57,17 +65,8 @@ class _PrimarySearchState extends State<PrimarySearch> {
                       TextPosition(offset: value.length),
                     );
                 },
-                prefixIcon: Assets.svg.search.svg().horizontalPadding(10),
               );
             },
-          ),
-        ),
-        Visibility(
-          visible: widget.showFilter,
-          child: IconButton(
-            icon: Assets.svg.filter.svg(),
-            splashRadius: 25,
-            onPressed: widget.onPressed,
           ),
         ),
       ],

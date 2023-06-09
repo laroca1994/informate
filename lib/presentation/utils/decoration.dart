@@ -17,25 +17,25 @@ InputDecoration customInputDecoration(
     prefixIcon: prefixIcon,
     isDense: true,
     focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(borderRadiusDefault),
       borderSide: BorderSide(color: primaryColor),
     ),
     enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(borderRadiusDefault),
       borderSide: BorderSide(color: primaryColor),
     ),
     border: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(borderRadiusDefault),
       borderSide: BorderSide(color: primaryColor),
     ),
     focusedErrorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(borderRadiusDefault),
       borderSide: BorderSide(color: primaryColor),
     ),
     // sin bordes
     disabledBorder: InputBorder.none,
     errorBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(borderRadiusDefault),
       borderSide: BorderSide(color: primaryColor),
     ),
   );
@@ -53,7 +53,7 @@ ButtonStyle customButtonStyle({Color? backgroundColor}) {
     // foregroundColor: MaterialStateProperty.all(Colors.white),
     backgroundColor: MaterialStateProperty.all(backgroundColor),
     shape: MaterialStateProperty.all(RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(borderRadius),
+      borderRadius: BorderRadius.circular(borderRadiusDefault),
     )),
     padding: MaterialStateProperty.all(
       const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
