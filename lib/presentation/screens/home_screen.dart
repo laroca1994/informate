@@ -7,7 +7,6 @@ import 'package:informate/data/extensions/string_extensions.dart';
 import 'package:informate/data/provider/commons_providers/commons_providers.dart';
 import 'package:informate/presentation/extensions/widget_extensions.dart';
 import 'package:informate/presentation/router/router.dart';
-import 'package:informate/presentation/widgets/dialogs/scaling_dialog.dart';
 import 'package:informate/presentation/widgets/input/primary_search.dart';
 import 'package:informate/presentation/widgets/text/primary_title.dart';
 
@@ -65,9 +64,10 @@ class HomeScreen extends StatelessWidget {
                   PrimarySearch(
                     labelText: 'Buscar noticias',
                     showFilter: true,
-                    onPressed: () => showDialog(
-                      context: context,
-                      builder: (BuildContext context) =>  ScalingDialog(child: Container(),),
+                    onPressed: () => context.navigateTo(
+                      NewsFilterRoute(
+                        category: CategoriesEnum.values.elementAt(homeIndex),
+                      ),
                     ),
                     prefixIcon: const Icon(Icons.search),
                     filter: (filter) => ref

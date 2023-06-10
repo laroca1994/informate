@@ -7,6 +7,17 @@ part 'basic_response_model.g.dart';
 part 'basic_response_model.freezed.dart';
 
 @freezed
+class ErrorResponse with _$ErrorResponse {
+  factory ErrorResponse({
+    required int statusCode,
+    required String message,
+  }) = _ErrorResponse;
+
+  factory ErrorResponse.fromJson(Map<String, dynamic> json) =>
+      _$ErrorResponseFromJson(json);
+}
+
+@freezed
 class ErrorModel with _$ErrorModel {
   const factory ErrorModel({
     ErrorData? error,

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:informate/data/const/const.dart';
 
-InputDecoration customInputDecoration(
+InputDecoration primaryInputDecoration(
   BuildContext context, {
   String? labelText,
   String? hintText,
@@ -41,7 +41,7 @@ InputDecoration customInputDecoration(
   );
 }
 
-ButtonStyle customButtonStyle({Color? backgroundColor}) {
+ButtonStyle primaryButtonStyle({Color? backgroundColor}) {
   return ButtonStyle(
     // backgroundColor: MaterialStateProperty.resolveWith<Color>((states) {
     //   if (states.contains(MaterialState.disabled)) {

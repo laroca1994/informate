@@ -47,7 +47,7 @@ class PrimaryTextField extends StatelessWidget {
         fontSize: fontSize,
         fontWeight: fontWeight,
       ),
-      decoration: customInputDecoration(
+      decoration: primaryInputDecoration(
         context,
         hintText: hintText,
         labelText: labelText,

@@ -21,6 +21,18 @@ Map<String, dynamic> _$BasicResponseToJson<T>(
       'data': instance.data.map(toJsonT).toList(),
     };
 
+_$_ErrorResponse _$$_ErrorResponseFromJson(Map<String, dynamic> json) =>
+    _$_ErrorResponse(
+      statusCode: json['statusCode'] as int,
+      message: json['message'] as String,
+    );
+
+Map<String, dynamic> _$$_ErrorResponseToJson(_$_ErrorResponse instance) =>
+    <String, dynamic>{
+      'statusCode': instance.statusCode,
+      'message': instance.message,
+    };
+
 _$_ErrorModel _$$_ErrorModelFromJson(Map<String, dynamic> json) =>
     _$_ErrorModel(
       error: json['error'] == null

@@ -15,6 +15,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    NewsFilterRoute.name: (routeData) {
+      final args = routeData.argsAs<NewsFilterRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: NewsFilterScreen(
+          key: args.key,
+          category: args.category,
+        ),
+      );
+    },
     NewsRoute.name: (routeData) {
       final args =
           routeData.argsAs<NewsRouteArgs>(orElse: () => const NewsRouteArgs());
@@ -33,6 +43,44 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [NewsFilterScreen]
+class NewsFilterRoute extends PageRouteInfo<NewsFilterRouteArgs> {
+  NewsFilterRoute({
+    Key? key,
+    required CategoriesEnum category,
+    List<PageRouteInfo>? children,
+  }) : super(
+          NewsFilterRoute.name,
+          args: NewsFilterRouteArgs(
+            key: key,
+            category: category,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'NewsFilterRoute';
+
+  static const PageInfo<NewsFilterRouteArgs> page =
+      PageInfo<NewsFilterRouteArgs>(name);
+}
+
+class NewsFilterRouteArgs {
+  const NewsFilterRouteArgs({
+    this.key,
+    required this.category,
+  });
+
+  final Key? key;
+
+  final CategoriesEnum category;
+
+  @override
+  String toString() {
+    return 'NewsFilterRouteArgs{key: $key, category: $category}';
+  }
 }
 
 /// generated route for

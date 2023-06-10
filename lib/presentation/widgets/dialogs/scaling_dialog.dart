@@ -49,23 +49,17 @@ class _ScalingDialogState extends State<ScalingDialog>
   Widget build(BuildContext context) {
     widget.closeDialog?.call(_closeDialog);
     final size = MediaQuery.of(context).size;
-    return GestureDetector(
-      onTap: _closeDialog,
-      child: ScaleTransition(
-        scale: _scaleAnimation,
-        child: Dialog(
-          insetPadding: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(borderRadiusDefault),
-          ),
-          child: GestureDetector(
-            onTap: _closeDialog,
-            child: SizedBox(
-              width: size.width * 0.8,
-              height: size.height * 0.7,
-              child: widget.child,
-            ),
-          ),
+    return ScaleTransition(
+      scale: _scaleAnimation,
+      child: Dialog(
+        insetPadding: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(borderRadiusDefault),
+        ),
+        child: SizedBox(
+          width: size.width * 0.8,
+          height: size.height * 0.7,
+          child: widget.child,
         ),
       ),
     );

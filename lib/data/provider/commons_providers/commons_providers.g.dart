@@ -270,7 +270,23 @@ class SourcesProvider extends AutoDisposeFutureProvider<BasicResponse<Source>> {
   }
 }
 
-String _$newsFilterHash() => r'4930100998189e42c57cde70306237227ffa609f';
+String _$countriesHash() => r'cb73a1a9592a81bce7c6658bb9c1ae165db80b3d';
+
+/// See also [countries].
+@ProviderFor(countries)
+final countriesProvider =
+    AutoDisposeFutureProvider<Result<List<Country>, ErrorResponse>>.internal(
+  countries,
+  name: r'countriesProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$countriesHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef CountriesRef
+    = AutoDisposeFutureProviderRef<Result<List<Country>, ErrorResponse>>;
+String _$newsFilterHash() => r'b68509fb9aba171d4b7e520a8a7c19de24c0540c';
 
 abstract class _$NewsFilter
     extends BuildlessAutoDisposeNotifier<NewsFilterModel> {

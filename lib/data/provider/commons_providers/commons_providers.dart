@@ -5,6 +5,7 @@ import 'package:informate/data/extensions/date_extensions.dart';
 import 'package:informate/data/models/basic_response_model.dart';
 import 'package:informate/data/models/filter_model.dart';
 import 'package:informate/data/provider/dio_providers/dio_providers.dart';
+import 'package:oxidized/oxidized.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'commons_providers.g.dart';
@@ -18,6 +19,18 @@ class NewsFilter extends _$NewsFilter {
 
   void searchKeywords(String keywords) =>
       state = state.copyWith(keywords: keywords);
+
+  void filter(NewsFilterModel model) => state = state.copyWith(
+        categories: model.categories,
+        countries: model.countries,
+        languages: model.languages,
+        date: model.date,
+        sort: model.sort,
+        sources: model.sources,
+        keywords: state.keywords,
+        offset: model.offset,
+        limit: model.limit,
+      );
 }
 
 @riverpod
@@ -86,4 +99,15 @@ Future<BasicResponse<Source>> sources(SourcesRef ref, {String? source}) async {
     limit: filter.limit,
     offset: filter.offset,
   );
+}
+
+@riverpod
+Future<Result<List<Country>, ErrorResponse>> countries(CountriesRef ref) async {
+  try {
+    final countries =  Countries();
+    await countries.loadFromHtml();
+    return Result.ok(countries.countries);
+  } catch (e) {
+    return Result.err(ErrorResponse(message: e.toString(), statusCode: 0));
+  }
 }

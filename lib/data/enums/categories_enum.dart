@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:informate/data/extensions/string_extensions.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 enum CategoriesEnum {
@@ -25,4 +26,17 @@ enum CategoriesEnum {
   final IconData iconData;
 
   bool get isAll => this == CategoriesEnum.all;
+
+  static List<CategoriesEnum> list() => [
+        CategoriesEnum.general,
+        CategoriesEnum.business,
+        CategoriesEnum.entertainment,
+        CategoriesEnum.health,
+        CategoriesEnum.science,
+        CategoriesEnum.sports,
+        CategoriesEnum.technology,
+      ];
+
+  @override
+  String toString() => name.capitalizeFirstLetter();
 }

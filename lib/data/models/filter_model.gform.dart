@@ -9,8 +9,8 @@ part of 'filter_model.dart';
 // ReactiveFormsGenerator
 // **************************************************************************
 
-class ReactiveNewsFilterModelFormConsumer extends StatelessWidget {
-  const ReactiveNewsFilterModelFormConsumer({
+class ReactiveNewsFilterReactiveModelFormConsumer extends StatelessWidget {
+  const ReactiveNewsFilterReactiveModelFormConsumer({
     Key? key,
     required this.builder,
     this.child,
@@ -18,23 +18,23 @@ class ReactiveNewsFilterModelFormConsumer extends StatelessWidget {
 
   final Widget? child;
 
-  final Widget Function(
-          BuildContext context, NewsFilterModelForm formModel, Widget? child)
-      builder;
+  final Widget Function(BuildContext context,
+      NewsFilterReactiveModelForm formModel, Widget? child) builder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveNewsFilterModelForm.of(context);
+    final formModel = ReactiveNewsFilterReactiveModelForm.of(context);
 
-    if (formModel is! NewsFilterModelForm) {
+    if (formModel is! NewsFilterReactiveModelForm) {
       throw FormControlParentNotFoundException(this);
     }
     return builder(context, formModel, child);
   }
 }
 
-class NewsFilterModelFormInheritedStreamer extends InheritedStreamer<dynamic> {
-  const NewsFilterModelFormInheritedStreamer({
+class NewsFilterReactiveModelFormInheritedStreamer
+    extends InheritedStreamer<dynamic> {
+  const NewsFilterReactiveModelFormInheritedStreamer({
     Key? key,
     required this.form,
     required Stream<dynamic> stream,
@@ -45,11 +45,11 @@ class NewsFilterModelFormInheritedStreamer extends InheritedStreamer<dynamic> {
           key: key,
         );
 
-  final NewsFilterModelForm form;
+  final NewsFilterReactiveModelForm form;
 }
 
-class ReactiveNewsFilterModelForm extends StatelessWidget {
-  const ReactiveNewsFilterModelForm({
+class ReactiveNewsFilterReactiveModelForm extends StatelessWidget {
+  const ReactiveNewsFilterReactiveModelForm({
     Key? key,
     required this.form,
     required this.child,
@@ -58,31 +58,31 @@ class ReactiveNewsFilterModelForm extends StatelessWidget {
 
   final Widget child;
 
-  final NewsFilterModelForm form;
+  final NewsFilterReactiveModelForm form;
 
   final WillPopCallback? onWillPop;
 
-  static NewsFilterModelForm? of(
+  static NewsFilterReactiveModelForm? of(
     BuildContext context, {
     bool listen = true,
   }) {
     if (listen) {
       return context
           .dependOnInheritedWidgetOfExactType<
-              NewsFilterModelFormInheritedStreamer>()
+              NewsFilterReactiveModelFormInheritedStreamer>()
           ?.form;
     }
 
     final element = context.getElementForInheritedWidgetOfExactType<
-        NewsFilterModelFormInheritedStreamer>();
+        NewsFilterReactiveModelFormInheritedStreamer>();
     return element == null
         ? null
-        : (element.widget as NewsFilterModelFormInheritedStreamer).form;
+        : (element.widget as NewsFilterReactiveModelFormInheritedStreamer).form;
   }
 
   @override
   Widget build(BuildContext context) {
-    return NewsFilterModelFormInheritedStreamer(
+    return NewsFilterReactiveModelFormInheritedStreamer(
       form: form,
       stream: form.form.statusChanged,
       child: WillPopScope(
@@ -93,8 +93,8 @@ class ReactiveNewsFilterModelForm extends StatelessWidget {
   }
 }
 
-class NewsFilterModelFormBuilder extends StatefulWidget {
-  const NewsFilterModelFormBuilder({
+class NewsFilterReactiveModelFormBuilder extends StatefulWidget {
+  const NewsFilterReactiveModelFormBuilder({
     Key? key,
     this.model,
     this.child,
@@ -103,32 +103,31 @@ class NewsFilterModelFormBuilder extends StatefulWidget {
     this.initState,
   }) : super(key: key);
 
-  final NewsFilterModel? model;
+  final NewsFilterReactiveModel? model;
 
   final Widget? child;
 
   final WillPopCallback? onWillPop;
 
-  final Widget Function(
-          BuildContext context, NewsFilterModelForm formModel, Widget? child)
-      builder;
+  final Widget Function(BuildContext context,
+      NewsFilterReactiveModelForm formModel, Widget? child) builder;
 
-  final void Function(BuildContext context, NewsFilterModelForm formModel)?
-      initState;
+  final void Function(
+      BuildContext context, NewsFilterReactiveModelForm formModel)? initState;
 
   @override
-  _NewsFilterModelFormBuilderState createState() =>
-      _NewsFilterModelFormBuilderState();
+  _NewsFilterReactiveModelFormBuilderState createState() =>
+      _NewsFilterReactiveModelFormBuilderState();
 }
 
-class _NewsFilterModelFormBuilderState
-    extends State<NewsFilterModelFormBuilder> {
-  late NewsFilterModelForm _formModel;
+class _NewsFilterReactiveModelFormBuilderState
+    extends State<NewsFilterReactiveModelFormBuilder> {
+  late NewsFilterReactiveModelForm _formModel;
 
   @override
   void initState() {
-    _formModel = NewsFilterModelForm(
-        NewsFilterModelForm.formElements(widget.model), null);
+    _formModel = NewsFilterReactiveModelForm(
+        NewsFilterReactiveModelForm.formElements(widget.model), null);
 
     if (_formModel.form.disabled) {
       _formModel.form.markAsDisabled();
@@ -140,10 +139,10 @@ class _NewsFilterModelFormBuilderState
   }
 
   @override
-  void didUpdateWidget(covariant NewsFilterModelFormBuilder oldWidget) {
+  void didUpdateWidget(covariant NewsFilterReactiveModelFormBuilder oldWidget) {
     if (widget.model != oldWidget.model) {
-      _formModel = NewsFilterModelForm(
-          NewsFilterModelForm.formElements(widget.model), null);
+      _formModel = NewsFilterReactiveModelForm(
+          NewsFilterReactiveModelForm.formElements(widget.model), null);
 
       if (_formModel.form.disabled) {
         _formModel.form.markAsDisabled();
@@ -163,7 +162,7 @@ class _NewsFilterModelFormBuilderState
 
   @override
   Widget build(BuildContext context) {
-    return ReactiveNewsFilterModelForm(
+    return ReactiveNewsFilterReactiveModelForm(
       key: ObjectKey(_formModel),
       form: _formModel,
       onWillPop: widget.onWillPop,
@@ -178,17 +177,14 @@ class _NewsFilterModelFormBuilderState
   }
 }
 
-class NewsFilterModelForm implements FormModel<NewsFilterModel> {
-  NewsFilterModelForm(
+class NewsFilterReactiveModelForm
+    implements FormModel<NewsFilterReactiveModel> {
+  NewsFilterReactiveModelForm(
     this.form,
     this.path,
   );
 
-  static const String keywordsControlName = "keywords";
-
   static const String dateControlName = "date";
-
-  static const String sortControlName = "sort";
 
   static const String countriesControlName = "countries";
 
@@ -198,6 +194,8 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
 
   static const String categoriesControlName = "categories";
 
+  static const String sortControlName = "sort";
+
   static const String limitControlName = "limit";
 
   static const String offsetControlName = "offset";
@@ -206,7 +204,6 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
 
   final String? path;
 
-  String keywordsControlPath() => pathBuilder(keywordsControlName);
   String sortControlPath() => pathBuilder(sortControlName);
   String limitControlPath() => pathBuilder(limitControlName);
   String offsetControlPath() => pathBuilder(offsetControlName);
@@ -215,29 +212,14 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
   String sourcesControlPath() => pathBuilder(sourcesControlName);
   String languagesControlPath() => pathBuilder(languagesControlName);
   String categoriesControlPath() => pathBuilder(categoriesControlName);
-  String get _keywordsValue => keywordsControl.value as String;
   SortEnum get _sortValue => sortControl.value as SortEnum;
   int get _limitValue => limitControl.value as int;
   int get _offsetValue => offsetControl.value as int;
-  List<DateTime> get _dateValue =>
-      dateControl.value?.whereType<DateTime>().toList() ?? [];
-  List<String> get _countriesValue =>
-      countriesControl.value?.whereType<String>().toList() ?? [];
-  List<Source> get _sourcesValue =>
-      sourcesControl.value?.whereType<Source>().toList() ?? [];
-  List<LanguagesEnum> get _languagesValue =>
-      languagesControl.value?.whereType<LanguagesEnum>().toList() ?? [];
-  List<CategoriesEnum> get _categoriesValue =>
-      categoriesControl.value?.whereType<CategoriesEnum>().toList() ?? [];
-  bool get containsKeywords {
-    try {
-      form.control(keywordsControlPath());
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
+  DateGroup? get _dateValue => dateForm.model;
+  CountriesGroup? get _countriesValue => countriesForm.model;
+  SourcesGroup? get _sourcesValue => sourcesForm.model;
+  LanguagesGroup? get _languagesValue => languagesForm.model;
+  CategoriesGroup? get _categoriesValue => categoriesForm.model;
   bool get containsSort {
     try {
       form.control(sortControlPath());
@@ -310,16 +292,14 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     }
   }
 
-  Object? get keywordsErrors => keywordsControl.errors;
   Object? get sortErrors => sortControl.errors;
   Object? get limitErrors => limitControl.errors;
   Object? get offsetErrors => offsetControl.errors;
-  Object? get dateErrors => dateControl.errors;
-  Object? get countriesErrors => countriesControl.errors;
-  Object? get sourcesErrors => sourcesControl.errors;
-  Object? get languagesErrors => languagesControl.errors;
-  Object? get categoriesErrors => categoriesControl.errors;
-  void get keywordsFocus => form.focus(keywordsControlPath());
+  Object? get dateErrors => dateControl?.errors;
+  Object? get countriesErrors => countriesControl?.errors;
+  Object? get sourcesErrors => sourcesControl?.errors;
+  Object? get languagesErrors => languagesControl?.errors;
+  Object? get categoriesErrors => categoriesControl?.errors;
   void get sortFocus => form.focus(sortControlPath());
   void get limitFocus => form.focus(limitControlPath());
   void get offsetFocus => form.focus(offsetControlPath());
@@ -328,13 +308,134 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
   void get sourcesFocus => form.focus(sourcesControlPath());
   void get languagesFocus => form.focus(languagesControlPath());
   void get categoriesFocus => form.focus(categoriesControlPath());
-  void keywordsValueUpdate(
-    String value, {
+  void dateRemove({
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    keywordsControl.updateValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    if (containsDate) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          dateControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            dateControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  void countriesRemove({
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (containsCountries) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          countriesControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            countriesControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  void sourcesRemove({
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (containsSources) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          sourcesControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            sourcesControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  void languagesRemove({
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (containsLanguages) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          languagesControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            languagesControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  void categoriesRemove({
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (containsCategories) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          categoriesControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            categoriesControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
   }
 
   void sortValueUpdate(
@@ -365,57 +466,54 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
   }
 
   void dateValueUpdate(
-    List<DateTime> value, {
+    DateGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    dateControl.updateValue(value,
+    dateControl?.updateValue(DateGroupForm.formElements(value).rawValue,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
   void countriesValueUpdate(
-    List<String> value, {
+    CountriesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    countriesControl.updateValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    countriesControl?.updateValue(
+        CountriesGroupForm.formElements(value).rawValue,
+        updateParent: updateParent,
+        emitEvent: emitEvent);
   }
 
   void sourcesValueUpdate(
-    List<Source> value, {
+    SourcesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    sourcesControl.updateValue(value,
+    sourcesControl?.updateValue(SourcesGroupForm.formElements(value).rawValue,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
   void languagesValueUpdate(
-    List<LanguagesEnum> value, {
+    LanguagesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    languagesControl.updateValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    languagesControl?.updateValue(
+        LanguagesGroupForm.formElements(value).rawValue,
+        updateParent: updateParent,
+        emitEvent: emitEvent);
   }
 
   void categoriesValueUpdate(
-    List<CategoriesEnum> value, {
+    CategoriesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    categoriesControl.updateValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
-  }
-
-  void keywordsValuePatch(
-    String value, {
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
-    keywordsControl.patchValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    categoriesControl?.updateValue(
+        CategoriesGroupForm.formElements(value).rawValue,
+        updateParent: updateParent,
+        emitEvent: emitEvent);
   }
 
   void sortValuePatch(
@@ -446,59 +544,56 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
   }
 
   void dateValuePatch(
-    List<DateTime> value, {
+    DateGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    dateControl.patchValue(value,
+    dateControl?.updateValue(DateGroupForm.formElements(value).rawValue,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
   void countriesValuePatch(
-    List<String> value, {
+    CountriesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    countriesControl.patchValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    countriesControl?.updateValue(
+        CountriesGroupForm.formElements(value).rawValue,
+        updateParent: updateParent,
+        emitEvent: emitEvent);
   }
 
   void sourcesValuePatch(
-    List<Source> value, {
+    SourcesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    sourcesControl.patchValue(value,
+    sourcesControl?.updateValue(SourcesGroupForm.formElements(value).rawValue,
         updateParent: updateParent, emitEvent: emitEvent);
   }
 
   void languagesValuePatch(
-    List<LanguagesEnum> value, {
+    LanguagesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    languagesControl.patchValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    languagesControl?.updateValue(
+        LanguagesGroupForm.formElements(value).rawValue,
+        updateParent: updateParent,
+        emitEvent: emitEvent);
   }
 
   void categoriesValuePatch(
-    List<CategoriesEnum> value, {
+    CategoriesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) {
-    categoriesControl.patchValue(value,
-        updateParent: updateParent, emitEvent: emitEvent);
+    categoriesControl?.updateValue(
+        CategoriesGroupForm.formElements(value).rawValue,
+        updateParent: updateParent,
+        emitEvent: emitEvent);
   }
 
-  void keywordsValueReset(
-    String value, {
-    bool updateParent = true,
-    bool emitEvent = true,
-    bool removeFocus = false,
-    bool? disabled,
-  }) =>
-      keywordsControl.reset(
-          value: value, updateParent: updateParent, emitEvent: emitEvent);
   void sortValueReset(
     SortEnum value, {
     bool updateParent = true,
@@ -527,86 +622,88 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
       offsetControl.reset(
           value: value, updateParent: updateParent, emitEvent: emitEvent);
   void dateValueReset(
-    List<DateTime> value, {
+    DateGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
     bool removeFocus = false,
     bool? disabled,
   }) =>
-      dateControl.reset(
-          value: value, updateParent: updateParent, emitEvent: emitEvent);
+      dateControl?.reset(
+          value: DateGroupForm.formElements(value).rawValue,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
   void countriesValueReset(
-    List<String> value, {
+    CountriesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
     bool removeFocus = false,
     bool? disabled,
   }) =>
-      countriesControl.reset(
-          value: value, updateParent: updateParent, emitEvent: emitEvent);
+      countriesControl?.reset(
+          value: CountriesGroupForm.formElements(value).rawValue,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
   void sourcesValueReset(
-    List<Source> value, {
+    SourcesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
     bool removeFocus = false,
     bool? disabled,
   }) =>
-      sourcesControl.reset(
-          value: value, updateParent: updateParent, emitEvent: emitEvent);
+      sourcesControl?.reset(
+          value: SourcesGroupForm.formElements(value).rawValue,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
   void languagesValueReset(
-    List<LanguagesEnum> value, {
+    LanguagesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
     bool removeFocus = false,
     bool? disabled,
   }) =>
-      languagesControl.reset(
-          value: value, updateParent: updateParent, emitEvent: emitEvent);
+      languagesControl?.reset(
+          value: LanguagesGroupForm.formElements(value).rawValue,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
   void categoriesValueReset(
-    List<CategoriesEnum> value, {
+    CategoriesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
     bool removeFocus = false,
     bool? disabled,
   }) =>
-      categoriesControl.reset(
-          value: value, updateParent: updateParent, emitEvent: emitEvent);
-  FormControl<String> get keywordsControl =>
-      form.control(keywordsControlPath()) as FormControl<String>;
+      categoriesControl?.reset(
+          value: CategoriesGroupForm.formElements(value).rawValue,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
   FormControl<SortEnum> get sortControl =>
       form.control(sortControlPath()) as FormControl<SortEnum>;
   FormControl<int> get limitControl =>
       form.control(limitControlPath()) as FormControl<int>;
   FormControl<int> get offsetControl =>
       form.control(offsetControlPath()) as FormControl<int>;
-  FormArray<DateTime> get dateControl =>
-      form.control(dateControlPath()) as FormArray<DateTime>;
-  FormArray<String> get countriesControl =>
-      form.control(countriesControlPath()) as FormArray<String>;
-  FormArray<Source> get sourcesControl =>
-      form.control(sourcesControlPath()) as FormArray<Source>;
-  FormArray<LanguagesEnum> get languagesControl =>
-      form.control(languagesControlPath()) as FormArray<LanguagesEnum>;
-  FormArray<CategoriesEnum> get categoriesControl =>
-      form.control(categoriesControlPath()) as FormArray<CategoriesEnum>;
-  void keywordsSetDisabled(
-    bool disabled, {
-    bool updateParent = true,
-    bool emitEvent = true,
-  }) {
-    if (disabled) {
-      keywordsControl.markAsDisabled(
-        updateParent: updateParent,
-        emitEvent: emitEvent,
-      );
-    } else {
-      keywordsControl.markAsEnabled(
-        updateParent: updateParent,
-        emitEvent: emitEvent,
-      );
-    }
-  }
-
+  FormGroup? get dateControl =>
+      containsDate ? form.control(dateControlPath()) as FormGroup? : null;
+  FormGroup? get countriesControl => containsCountries
+      ? form.control(countriesControlPath()) as FormGroup?
+      : null;
+  FormGroup? get sourcesControl =>
+      containsSources ? form.control(sourcesControlPath()) as FormGroup? : null;
+  FormGroup? get languagesControl => containsLanguages
+      ? form.control(languagesControlPath()) as FormGroup?
+      : null;
+  FormGroup? get categoriesControl => containsCategories
+      ? form.control(categoriesControlPath()) as FormGroup?
+      : null;
+  DateGroupForm get dateForm => DateGroupForm(form, pathBuilder('date'));
+  CountriesGroupForm get countriesForm =>
+      CountriesGroupForm(form, pathBuilder('countries'));
+  SourcesGroupForm get sourcesForm =>
+      SourcesGroupForm(form, pathBuilder('sources'));
+  LanguagesGroupForm get languagesForm =>
+      LanguagesGroupForm(form, pathBuilder('languages'));
+  CategoriesGroupForm get categoriesForm =>
+      CategoriesGroupForm(form, pathBuilder('categories'));
   void sortSetDisabled(
     bool disabled, {
     bool updateParent = true,
@@ -667,12 +764,12 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     bool emitEvent = true,
   }) {
     if (disabled) {
-      dateControl.markAsDisabled(
+      dateControl?.markAsDisabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
     } else {
-      dateControl.markAsEnabled(
+      dateControl?.markAsEnabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
@@ -685,12 +782,12 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     bool emitEvent = true,
   }) {
     if (disabled) {
-      countriesControl.markAsDisabled(
+      countriesControl?.markAsDisabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
     } else {
-      countriesControl.markAsEnabled(
+      countriesControl?.markAsEnabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
@@ -703,12 +800,12 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     bool emitEvent = true,
   }) {
     if (disabled) {
-      sourcesControl.markAsDisabled(
+      sourcesControl?.markAsDisabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
     } else {
-      sourcesControl.markAsEnabled(
+      sourcesControl?.markAsEnabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
@@ -721,12 +818,12 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     bool emitEvent = true,
   }) {
     if (disabled) {
-      languagesControl.markAsDisabled(
+      languagesControl?.markAsDisabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
     } else {
-      languagesControl.markAsEnabled(
+      languagesControl?.markAsEnabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
@@ -739,20 +836,503 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     bool emitEvent = true,
   }) {
     if (disabled) {
-      categoriesControl.markAsDisabled(
+      categoriesControl?.markAsDisabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
     } else {
-      categoriesControl.markAsEnabled(
+      categoriesControl?.markAsEnabled(
         updateParent: updateParent,
         emitEvent: emitEvent,
       );
     }
   }
 
-  void addDateItem(
-    DateTime value, {
+  @override
+  NewsFilterReactiveModel get model {
+    final currentForm = path == null ? form : form.control(path!);
+
+    if (!currentForm.valid) {
+      debugPrint(
+          '[${path ?? 'NewsFilterReactiveModelForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
+    }
+    return NewsFilterReactiveModel(
+        date: _dateValue,
+        countries: _countriesValue,
+        sources: _sourcesValue,
+        languages: _languagesValue,
+        categories: _categoriesValue,
+        sort: _sortValue,
+        limit: _limitValue,
+        offset: _offsetValue);
+  }
+
+  void submit({
+    required void Function(NewsFilterReactiveModel model) onValid,
+    void Function()? onNotValid,
+  }) {
+    form.markAllAsTouched();
+    if (form.valid) {
+      onValid(model);
+    } else {
+      onNotValid?.call();
+    }
+  }
+
+  @override
+  void updateValue(
+    NewsFilterReactiveModel value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.updateValue(NewsFilterReactiveModelForm.formElements(value).rawValue,
+          updateParent: updateParent, emitEvent: emitEvent);
+  @override
+  void reset({
+    NewsFilterReactiveModel? value,
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.reset(
+          value: value != null ? formElements(value).rawValue : null,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
+  String pathBuilder(String? pathItem) =>
+      [path, pathItem].whereType<String>().join(".");
+  static FormGroup formElements(
+          NewsFilterReactiveModel? newsFilterReactiveModel) =>
+      FormGroup({
+        sortControlName: FormControl<SortEnum>(
+            value: newsFilterReactiveModel?.sort,
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false),
+        limitControlName: FormControl<int>(
+            value: newsFilterReactiveModel?.limit,
+            validators: [max100Validator, min1Validator],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false),
+        offsetControlName: FormControl<int>(
+            value: newsFilterReactiveModel?.offset,
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false),
+        dateControlName:
+            DateGroupForm.formElements(newsFilterReactiveModel?.date),
+        countriesControlName:
+            CountriesGroupForm.formElements(newsFilterReactiveModel?.countries),
+        sourcesControlName:
+            SourcesGroupForm.formElements(newsFilterReactiveModel?.sources),
+        languagesControlName:
+            LanguagesGroupForm.formElements(newsFilterReactiveModel?.languages),
+        categoriesControlName: CategoriesGroupForm.formElements(
+            newsFilterReactiveModel?.categories)
+      },
+          validators: [],
+          asyncValidators: [],
+          asyncValidatorsDebounceTime: 250,
+          disabled: false);
+}
+
+class DateGroupForm implements FormModel<DateGroup> {
+  DateGroupForm(
+    this.form,
+    this.path,
+  );
+
+  static const String dateInControlName = "dateIn";
+
+  static const String dateOutControlName = "dateOut";
+
+  final FormGroup form;
+
+  final String? path;
+
+  String dateInControlPath() => pathBuilder(dateInControlName);
+  String dateOutControlPath() => pathBuilder(dateOutControlName);
+  DateTime? get _dateInValue => dateInControl?.value;
+  DateTime? get _dateOutValue => dateOutControl?.value;
+  bool get containsDateIn {
+    try {
+      form.control(dateInControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  bool get containsDateOut {
+    try {
+      form.control(dateOutControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Object? get dateInErrors => dateInControl?.errors;
+  Object? get dateOutErrors => dateOutControl?.errors;
+  void get dateInFocus => form.focus(dateInControlPath());
+  void get dateOutFocus => form.focus(dateOutControlPath());
+  void dateInRemove({
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (containsDateIn) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          dateInControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            dateInControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  void dateOutRemove({
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (containsDateOut) {
+      final controlPath = path;
+      if (controlPath == null) {
+        form.removeControl(
+          dateOutControlName,
+          updateParent: updateParent,
+          emitEvent: emitEvent,
+        );
+      } else {
+        final formGroup = form.control(controlPath);
+
+        if (formGroup is FormGroup) {
+          formGroup.removeControl(
+            dateOutControlName,
+            updateParent: updateParent,
+            emitEvent: emitEvent,
+          );
+        }
+      }
+    }
+  }
+
+  void dateInValueUpdate(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    dateInControl?.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void dateOutValueUpdate(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    dateOutControl?.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void dateInValuePatch(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    dateInControl?.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void dateOutValuePatch(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    dateOutControl?.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void dateInValueReset(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      dateInControl?.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  void dateOutValueReset(
+    DateTime? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      dateOutControl?.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  FormControl<DateTime>? get dateInControl => containsDateIn
+      ? form.control(dateInControlPath()) as FormControl<DateTime>?
+      : null;
+  FormControl<DateTime>? get dateOutControl => containsDateOut
+      ? form.control(dateOutControlPath()) as FormControl<DateTime>?
+      : null;
+  void dateInSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      dateInControl?.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      dateInControl?.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void dateOutSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      dateOutControl?.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      dateOutControl?.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  @override
+  DateGroup get model {
+    final currentForm = path == null ? form : form.control(path!);
+
+    if (!currentForm.valid) {
+      debugPrint(
+          '[${path ?? 'DateGroupForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
+    }
+    return DateGroup(dateIn: _dateInValue, dateOut: _dateOutValue);
+  }
+
+  void submit({
+    required void Function(DateGroup model) onValid,
+    void Function()? onNotValid,
+  }) {
+    form.markAllAsTouched();
+    if (form.valid) {
+      onValid(model);
+    } else {
+      onNotValid?.call();
+    }
+  }
+
+  @override
+  void updateValue(
+    DateGroup? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.updateValue(DateGroupForm.formElements(value).rawValue,
+          updateParent: updateParent, emitEvent: emitEvent);
+  @override
+  void reset({
+    DateGroup? value,
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.reset(
+          value: value != null ? formElements(value).rawValue : null,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
+  String pathBuilder(String? pathItem) =>
+      [path, pathItem].whereType<String>().join(".");
+  static FormGroup formElements(DateGroup? dateGroup) => FormGroup({
+        dateInControlName: FormControl<DateTime>(
+            value: dateGroup?.dateIn,
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false),
+        dateOutControlName: FormControl<DateTime>(
+            value: dateGroup?.dateOut,
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false,
+            touched: false)
+      },
+          validators: [
+            correctDateValidator
+          ],
+          asyncValidators: [],
+          asyncValidatorsDebounceTime: 250,
+          disabled: false);
+}
+
+class CountriesGroupForm implements FormModel<CountriesGroup> {
+  CountriesGroupForm(
+    this.form,
+    this.path,
+  );
+
+  static const String countryInControlName = "countryIn";
+
+  static const String countryOutControlName = "countryOut";
+
+  final FormGroup form;
+
+  final String? path;
+
+  String countryInControlPath() => pathBuilder(countryInControlName);
+  String countryOutControlPath() => pathBuilder(countryOutControlName);
+  List<Country> get _countryInValue =>
+      countryInControl.value?.whereType<Country>().toList() ?? [];
+  List<Country> get _countryOutValue =>
+      countryOutControl.value?.whereType<Country>().toList() ?? [];
+  bool get containsCountryIn {
+    try {
+      form.control(countryInControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  bool get containsCountryOut {
+    try {
+      form.control(countryOutControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Object? get countryInErrors => countryInControl.errors;
+  Object? get countryOutErrors => countryOutControl.errors;
+  void get countryInFocus => form.focus(countryInControlPath());
+  void get countryOutFocus => form.focus(countryOutControlPath());
+  void countryInValueUpdate(
+    List<Country> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    countryInControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void countryOutValueUpdate(
+    List<Country> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    countryOutControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void countryInValuePatch(
+    List<Country> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    countryInControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void countryOutValuePatch(
+    List<Country> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    countryOutControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void countryInValueReset(
+    List<Country> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      countryInControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  void countryOutValueReset(
+    List<Country> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      countryOutControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  FormArray<Country> get countryInControl =>
+      form.control(countryInControlPath()) as FormArray<Country>;
+  FormArray<Country> get countryOutControl =>
+      form.control(countryOutControlPath()) as FormArray<Country>;
+  void countryInSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      countryInControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      countryInControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void countryOutSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      countryOutControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      countryOutControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void addCountryInItem(
+    Country value, {
     List<AsyncValidatorFunction>? asyncValidators,
     List<ValidatorFunction>? validators,
     int? asyncValidatorsDebounceTime,
@@ -782,7 +1362,7 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
         break;
     }
 
-    dateControl.add(FormControl<DateTime>(
+    countryInControl.add(FormControl<Country>(
       value: value,
       validators: resultingValidators,
       asyncValidators: resultingAsyncValidators,
@@ -791,8 +1371,8 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     ));
   }
 
-  void addCountriesItem(
-    String value, {
+  void addCountryOutItem(
+    Country value, {
     List<AsyncValidatorFunction>? asyncValidators,
     List<ValidatorFunction>? validators,
     int? asyncValidatorsDebounceTime,
@@ -822,7 +1402,7 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
         break;
     }
 
-    countriesControl.add(FormControl<String>(
+    countryOutControl.add(FormControl<Country>(
       value: value,
       validators: resultingValidators,
       asyncValidators: resultingAsyncValidators,
@@ -831,7 +1411,225 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     ));
   }
 
-  void addSourcesItem(
+  @override
+  CountriesGroup get model {
+    final currentForm = path == null ? form : form.control(path!);
+
+    if (!currentForm.valid) {
+      debugPrint(
+          '[${path ?? 'CountriesGroupForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
+    }
+    return CountriesGroup(
+        countryIn: _countryInValue, countryOut: _countryOutValue);
+  }
+
+  void submit({
+    required void Function(CountriesGroup model) onValid,
+    void Function()? onNotValid,
+  }) {
+    form.markAllAsTouched();
+    if (form.valid) {
+      onValid(model);
+    } else {
+      onNotValid?.call();
+    }
+  }
+
+  @override
+  void updateValue(
+    CountriesGroup? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.updateValue(CountriesGroupForm.formElements(value).rawValue,
+          updateParent: updateParent, emitEvent: emitEvent);
+  @override
+  void reset({
+    CountriesGroup? value,
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.reset(
+          value: value != null ? formElements(value).rawValue : null,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
+  String pathBuilder(String? pathItem) =>
+      [path, pathItem].whereType<String>().join(".");
+  static FormGroup formElements(CountriesGroup? countriesGroup) => FormGroup({
+        countryInControlName: FormArray<Country>(
+            (countriesGroup?.countryIn ?? [])
+                .map((e) => FormControl<Country>(
+                      value: e,
+                      validators: [],
+                      asyncValidators: [],
+                      asyncValidatorsDebounceTime: 250,
+                      disabled: false,
+                    ))
+                .toList(),
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false),
+        countryOutControlName: FormArray<Country>(
+            (countriesGroup?.countryOut ?? [])
+                .map((e) => FormControl<Country>(
+                      value: e,
+                      validators: [],
+                      asyncValidators: [],
+                      asyncValidatorsDebounceTime: 250,
+                      disabled: false,
+                    ))
+                .toList(),
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false)
+      },
+          validators: [
+            correctListValidator
+          ],
+          asyncValidators: [],
+          asyncValidatorsDebounceTime: 250,
+          disabled: false);
+}
+
+class SourcesGroupForm implements FormModel<SourcesGroup> {
+  SourcesGroupForm(
+    this.form,
+    this.path,
+  );
+
+  static const String dateInControlName = "dateIn";
+
+  static const String dateOutControlName = "dateOut";
+
+  final FormGroup form;
+
+  final String? path;
+
+  String dateInControlPath() => pathBuilder(dateInControlName);
+  String dateOutControlPath() => pathBuilder(dateOutControlName);
+  List<Source> get _dateInValue =>
+      dateInControl.value?.whereType<Source>().toList() ?? [];
+  List<Source> get _dateOutValue =>
+      dateOutControl.value?.whereType<Source>().toList() ?? [];
+  bool get containsDateIn {
+    try {
+      form.control(dateInControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  bool get containsDateOut {
+    try {
+      form.control(dateOutControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Object? get dateInErrors => dateInControl.errors;
+  Object? get dateOutErrors => dateOutControl.errors;
+  void get dateInFocus => form.focus(dateInControlPath());
+  void get dateOutFocus => form.focus(dateOutControlPath());
+  void dateInValueUpdate(
+    List<Source> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    dateInControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void dateOutValueUpdate(
+    List<Source> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    dateOutControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void dateInValuePatch(
+    List<Source> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    dateInControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void dateOutValuePatch(
+    List<Source> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    dateOutControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void dateInValueReset(
+    List<Source> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      dateInControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  void dateOutValueReset(
+    List<Source> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      dateOutControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  FormArray<Source> get dateInControl =>
+      form.control(dateInControlPath()) as FormArray<Source>;
+  FormArray<Source> get dateOutControl =>
+      form.control(dateOutControlPath()) as FormArray<Source>;
+  void dateInSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      dateInControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      dateInControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void dateOutSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      dateOutControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      dateOutControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void addDateInItem(
     Source value, {
     List<AsyncValidatorFunction>? asyncValidators,
     List<ValidatorFunction>? validators,
@@ -862,7 +1660,7 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
         break;
     }
 
-    sourcesControl.add(FormControl<Source>(
+    dateInControl.add(FormControl<Source>(
       value: value,
       validators: resultingValidators,
       asyncValidators: resultingAsyncValidators,
@@ -871,7 +1669,264 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     ));
   }
 
-  void addLanguagesItem(
+  void addDateOutItem(
+    Source value, {
+    List<AsyncValidatorFunction>? asyncValidators,
+    List<ValidatorFunction>? validators,
+    int? asyncValidatorsDebounceTime,
+    bool? disabled,
+    ValidatorsApplyMode validatorsApplyMode = ValidatorsApplyMode.merge,
+  }) {
+    List<ValidatorFunction> resultingValidators = [];
+    List<AsyncValidatorFunction> resultingAsyncValidators = [];
+
+    switch (validatorsApplyMode) {
+      case ValidatorsApplyMode.merge:
+        if (validators != null) {
+          resultingValidators.addAll(validators);
+        }
+        if (asyncValidators != null) {
+          resultingAsyncValidators.addAll(asyncValidators);
+        }
+        break;
+      case ValidatorsApplyMode.override:
+        if (validators != null) {
+          resultingValidators = validators;
+        }
+
+        if (asyncValidators != null) {
+          resultingAsyncValidators = asyncValidators;
+        }
+        break;
+    }
+
+    dateOutControl.add(FormControl<Source>(
+      value: value,
+      validators: resultingValidators,
+      asyncValidators: resultingAsyncValidators,
+      asyncValidatorsDebounceTime: asyncValidatorsDebounceTime ?? 250,
+      disabled: disabled ?? false,
+    ));
+  }
+
+  @override
+  SourcesGroup get model {
+    final currentForm = path == null ? form : form.control(path!);
+
+    if (!currentForm.valid) {
+      debugPrint(
+          '[${path ?? 'SourcesGroupForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
+    }
+    return SourcesGroup(dateIn: _dateInValue, dateOut: _dateOutValue);
+  }
+
+  void submit({
+    required void Function(SourcesGroup model) onValid,
+    void Function()? onNotValid,
+  }) {
+    form.markAllAsTouched();
+    if (form.valid) {
+      onValid(model);
+    } else {
+      onNotValid?.call();
+    }
+  }
+
+  @override
+  void updateValue(
+    SourcesGroup? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.updateValue(SourcesGroupForm.formElements(value).rawValue,
+          updateParent: updateParent, emitEvent: emitEvent);
+  @override
+  void reset({
+    SourcesGroup? value,
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.reset(
+          value: value != null ? formElements(value).rawValue : null,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
+  String pathBuilder(String? pathItem) =>
+      [path, pathItem].whereType<String>().join(".");
+  static FormGroup formElements(SourcesGroup? sourcesGroup) => FormGroup({
+        dateInControlName: FormArray<Source>(
+            (sourcesGroup?.dateIn ?? [])
+                .map((e) => FormControl<Source>(
+                      value: e,
+                      validators: [],
+                      asyncValidators: [],
+                      asyncValidatorsDebounceTime: 250,
+                      disabled: false,
+                    ))
+                .toList(),
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false),
+        dateOutControlName: FormArray<Source>(
+            (sourcesGroup?.dateOut ?? [])
+                .map((e) => FormControl<Source>(
+                      value: e,
+                      validators: [],
+                      asyncValidators: [],
+                      asyncValidatorsDebounceTime: 250,
+                      disabled: false,
+                    ))
+                .toList(),
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false)
+      },
+          validators: [
+            correctListValidator
+          ],
+          asyncValidators: [],
+          asyncValidatorsDebounceTime: 250,
+          disabled: false);
+}
+
+class LanguagesGroupForm implements FormModel<LanguagesGroup> {
+  LanguagesGroupForm(
+    this.form,
+    this.path,
+  );
+
+  static const String languagesInControlName = "languagesIn";
+
+  static const String languagesOutControlName = "languagesOut";
+
+  final FormGroup form;
+
+  final String? path;
+
+  String languagesInControlPath() => pathBuilder(languagesInControlName);
+  String languagesOutControlPath() => pathBuilder(languagesOutControlName);
+  List<LanguagesEnum> get _languagesInValue =>
+      languagesInControl.value?.whereType<LanguagesEnum>().toList() ?? [];
+  List<LanguagesEnum> get _languagesOutValue =>
+      languagesOutControl.value?.whereType<LanguagesEnum>().toList() ?? [];
+  bool get containsLanguagesIn {
+    try {
+      form.control(languagesInControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  bool get containsLanguagesOut {
+    try {
+      form.control(languagesOutControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Object? get languagesInErrors => languagesInControl.errors;
+  Object? get languagesOutErrors => languagesOutControl.errors;
+  void get languagesInFocus => form.focus(languagesInControlPath());
+  void get languagesOutFocus => form.focus(languagesOutControlPath());
+  void languagesInValueUpdate(
+    List<LanguagesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    languagesInControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void languagesOutValueUpdate(
+    List<LanguagesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    languagesOutControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void languagesInValuePatch(
+    List<LanguagesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    languagesInControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void languagesOutValuePatch(
+    List<LanguagesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    languagesOutControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void languagesInValueReset(
+    List<LanguagesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      languagesInControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  void languagesOutValueReset(
+    List<LanguagesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      languagesOutControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  FormArray<LanguagesEnum> get languagesInControl =>
+      form.control(languagesInControlPath()) as FormArray<LanguagesEnum>;
+  FormArray<LanguagesEnum> get languagesOutControl =>
+      form.control(languagesOutControlPath()) as FormArray<LanguagesEnum>;
+  void languagesInSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      languagesInControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      languagesInControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void languagesOutSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      languagesOutControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      languagesOutControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void addLanguagesInItem(
     LanguagesEnum value, {
     List<AsyncValidatorFunction>? asyncValidators,
     List<ValidatorFunction>? validators,
@@ -902,7 +1957,7 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
         break;
     }
 
-    languagesControl.add(FormControl<LanguagesEnum>(
+    languagesInControl.add(FormControl<LanguagesEnum>(
       value: value,
       validators: resultingValidators,
       asyncValidators: resultingAsyncValidators,
@@ -911,7 +1966,265 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
     ));
   }
 
-  void addCategoriesItem(
+  void addLanguagesOutItem(
+    LanguagesEnum value, {
+    List<AsyncValidatorFunction>? asyncValidators,
+    List<ValidatorFunction>? validators,
+    int? asyncValidatorsDebounceTime,
+    bool? disabled,
+    ValidatorsApplyMode validatorsApplyMode = ValidatorsApplyMode.merge,
+  }) {
+    List<ValidatorFunction> resultingValidators = [];
+    List<AsyncValidatorFunction> resultingAsyncValidators = [];
+
+    switch (validatorsApplyMode) {
+      case ValidatorsApplyMode.merge:
+        if (validators != null) {
+          resultingValidators.addAll(validators);
+        }
+        if (asyncValidators != null) {
+          resultingAsyncValidators.addAll(asyncValidators);
+        }
+        break;
+      case ValidatorsApplyMode.override:
+        if (validators != null) {
+          resultingValidators = validators;
+        }
+
+        if (asyncValidators != null) {
+          resultingAsyncValidators = asyncValidators;
+        }
+        break;
+    }
+
+    languagesOutControl.add(FormControl<LanguagesEnum>(
+      value: value,
+      validators: resultingValidators,
+      asyncValidators: resultingAsyncValidators,
+      asyncValidatorsDebounceTime: asyncValidatorsDebounceTime ?? 250,
+      disabled: disabled ?? false,
+    ));
+  }
+
+  @override
+  LanguagesGroup get model {
+    final currentForm = path == null ? form : form.control(path!);
+
+    if (!currentForm.valid) {
+      debugPrint(
+          '[${path ?? 'LanguagesGroupForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
+    }
+    return LanguagesGroup(
+        languagesIn: _languagesInValue, languagesOut: _languagesOutValue);
+  }
+
+  void submit({
+    required void Function(LanguagesGroup model) onValid,
+    void Function()? onNotValid,
+  }) {
+    form.markAllAsTouched();
+    if (form.valid) {
+      onValid(model);
+    } else {
+      onNotValid?.call();
+    }
+  }
+
+  @override
+  void updateValue(
+    LanguagesGroup? value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.updateValue(LanguagesGroupForm.formElements(value).rawValue,
+          updateParent: updateParent, emitEvent: emitEvent);
+  @override
+  void reset({
+    LanguagesGroup? value,
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) =>
+      form.reset(
+          value: value != null ? formElements(value).rawValue : null,
+          updateParent: updateParent,
+          emitEvent: emitEvent);
+  String pathBuilder(String? pathItem) =>
+      [path, pathItem].whereType<String>().join(".");
+  static FormGroup formElements(LanguagesGroup? languagesGroup) => FormGroup({
+        languagesInControlName: FormArray<LanguagesEnum>(
+            (languagesGroup?.languagesIn ?? [])
+                .map((e) => FormControl<LanguagesEnum>(
+                      value: e,
+                      validators: [],
+                      asyncValidators: [],
+                      asyncValidatorsDebounceTime: 250,
+                      disabled: false,
+                    ))
+                .toList(),
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false),
+        languagesOutControlName: FormArray<LanguagesEnum>(
+            (languagesGroup?.languagesOut ?? [])
+                .map((e) => FormControl<LanguagesEnum>(
+                      value: e,
+                      validators: [],
+                      asyncValidators: [],
+                      asyncValidatorsDebounceTime: 250,
+                      disabled: false,
+                    ))
+                .toList(),
+            validators: [],
+            asyncValidators: [],
+            asyncValidatorsDebounceTime: 250,
+            disabled: false)
+      },
+          validators: [
+            correctListValidator
+          ],
+          asyncValidators: [],
+          asyncValidatorsDebounceTime: 250,
+          disabled: false);
+}
+
+class CategoriesGroupForm implements FormModel<CategoriesGroup> {
+  CategoriesGroupForm(
+    this.form,
+    this.path,
+  );
+
+  static const String categoriesInControlName = "categoriesIn";
+
+  static const String categoriesOutControlName = "categoriesOut";
+
+  final FormGroup form;
+
+  final String? path;
+
+  String categoriesInControlPath() => pathBuilder(categoriesInControlName);
+  String categoriesOutControlPath() => pathBuilder(categoriesOutControlName);
+  List<CategoriesEnum> get _categoriesInValue =>
+      categoriesInControl.value?.whereType<CategoriesEnum>().toList() ?? [];
+  List<CategoriesEnum> get _categoriesOutValue =>
+      categoriesOutControl.value?.whereType<CategoriesEnum>().toList() ?? [];
+  bool get containsCategoriesIn {
+    try {
+      form.control(categoriesInControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  bool get containsCategoriesOut {
+    try {
+      form.control(categoriesOutControlPath());
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Object? get categoriesInErrors => categoriesInControl.errors;
+  Object? get categoriesOutErrors => categoriesOutControl.errors;
+  void get categoriesInFocus => form.focus(categoriesInControlPath());
+  void get categoriesOutFocus => form.focus(categoriesOutControlPath());
+  void categoriesInValueUpdate(
+    List<CategoriesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    categoriesInControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void categoriesOutValueUpdate(
+    List<CategoriesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    categoriesOutControl.updateValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void categoriesInValuePatch(
+    List<CategoriesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    categoriesInControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void categoriesOutValuePatch(
+    List<CategoriesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    categoriesOutControl.patchValue(value,
+        updateParent: updateParent, emitEvent: emitEvent);
+  }
+
+  void categoriesInValueReset(
+    List<CategoriesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      categoriesInControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  void categoriesOutValueReset(
+    List<CategoriesEnum> value, {
+    bool updateParent = true,
+    bool emitEvent = true,
+    bool removeFocus = false,
+    bool? disabled,
+  }) =>
+      categoriesOutControl.reset(
+          value: value, updateParent: updateParent, emitEvent: emitEvent);
+  FormArray<CategoriesEnum> get categoriesInControl =>
+      form.control(categoriesInControlPath()) as FormArray<CategoriesEnum>;
+  FormArray<CategoriesEnum> get categoriesOutControl =>
+      form.control(categoriesOutControlPath()) as FormArray<CategoriesEnum>;
+  void categoriesInSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      categoriesInControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      categoriesInControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void categoriesOutSetDisabled(
+    bool disabled, {
+    bool updateParent = true,
+    bool emitEvent = true,
+  }) {
+    if (disabled) {
+      categoriesOutControl.markAsDisabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    } else {
+      categoriesOutControl.markAsEnabled(
+        updateParent: updateParent,
+        emitEvent: emitEvent,
+      );
+    }
+  }
+
+  void addCategoriesInItem(
     CategoriesEnum value, {
     List<AsyncValidatorFunction>? asyncValidators,
     List<ValidatorFunction>? validators,
@@ -942,7 +2255,47 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
         break;
     }
 
-    categoriesControl.add(FormControl<CategoriesEnum>(
+    categoriesInControl.add(FormControl<CategoriesEnum>(
+      value: value,
+      validators: resultingValidators,
+      asyncValidators: resultingAsyncValidators,
+      asyncValidatorsDebounceTime: asyncValidatorsDebounceTime ?? 250,
+      disabled: disabled ?? false,
+    ));
+  }
+
+  void addCategoriesOutItem(
+    CategoriesEnum value, {
+    List<AsyncValidatorFunction>? asyncValidators,
+    List<ValidatorFunction>? validators,
+    int? asyncValidatorsDebounceTime,
+    bool? disabled,
+    ValidatorsApplyMode validatorsApplyMode = ValidatorsApplyMode.merge,
+  }) {
+    List<ValidatorFunction> resultingValidators = [];
+    List<AsyncValidatorFunction> resultingAsyncValidators = [];
+
+    switch (validatorsApplyMode) {
+      case ValidatorsApplyMode.merge:
+        if (validators != null) {
+          resultingValidators.addAll(validators);
+        }
+        if (asyncValidators != null) {
+          resultingAsyncValidators.addAll(asyncValidators);
+        }
+        break;
+      case ValidatorsApplyMode.override:
+        if (validators != null) {
+          resultingValidators = validators;
+        }
+
+        if (asyncValidators != null) {
+          resultingAsyncValidators = asyncValidators;
+        }
+        break;
+    }
+
+    categoriesOutControl.add(FormControl<CategoriesEnum>(
       value: value,
       validators: resultingValidators,
       asyncValidators: resultingAsyncValidators,
@@ -952,27 +2305,19 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
   }
 
   @override
-  NewsFilterModel get model {
+  CategoriesGroup get model {
     final currentForm = path == null ? form : form.control(path!);
 
     if (!currentForm.valid) {
       debugPrint(
-          '[${path ?? 'NewsFilterModelForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
+          '[${path ?? 'CategoriesGroupForm'}]\n┗━ Avoid calling `model` on invalid form. Possible exceptions for non-nullable fields which should be guarded by `required` validator.');
     }
-    return NewsFilterModel(
-        keywords: _keywordsValue,
-        date: _dateValue,
-        sort: _sortValue,
-        countries: _countriesValue,
-        sources: _sourcesValue,
-        languages: _languagesValue,
-        categories: _categoriesValue,
-        limit: _limitValue,
-        offset: _offsetValue);
+    return CategoriesGroup(
+        categoriesIn: _categoriesInValue, categoriesOut: _categoriesOutValue);
   }
 
   void submit({
-    required void Function(NewsFilterModel model) onValid,
+    required void Function(CategoriesGroup model) onValid,
     void Function()? onNotValid,
   }) {
     form.markAllAsTouched();
@@ -985,15 +2330,15 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
 
   @override
   void updateValue(
-    NewsFilterModel value, {
+    CategoriesGroup? value, {
     bool updateParent = true,
     bool emitEvent = true,
   }) =>
-      form.updateValue(NewsFilterModelForm.formElements(value).rawValue,
+      form.updateValue(CategoriesGroupForm.formElements(value).rawValue,
           updateParent: updateParent, emitEvent: emitEvent);
   @override
   void reset({
-    NewsFilterModel? value,
+    CategoriesGroup? value,
     bool updateParent = true,
     bool emitEvent = true,
   }) =>
@@ -1003,79 +2348,9 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
           emitEvent: emitEvent);
   String pathBuilder(String? pathItem) =>
       [path, pathItem].whereType<String>().join(".");
-  static FormGroup formElements(NewsFilterModel? newsFilterModel) => FormGroup({
-        keywordsControlName: FormControl<String>(
-            value: newsFilterModel?.keywords,
-            validators: [],
-            asyncValidators: [],
-            asyncValidatorsDebounceTime: 250,
-            disabled: false,
-            touched: false),
-        dateControlName: FormArray<DateTime>(
-            (newsFilterModel?.date ?? [])
-                .map((e) => FormControl<DateTime>(
-                      value: e,
-                      validators: [],
-                      asyncValidators: [],
-                      asyncValidatorsDebounceTime: 250,
-                      disabled: false,
-                    ))
-                .toList(),
-            validators: [],
-            asyncValidators: [],
-            asyncValidatorsDebounceTime: 250,
-            disabled: false),
-        sortControlName: FormControl<SortEnum>(
-            value: newsFilterModel?.sort,
-            validators: [],
-            asyncValidators: [],
-            asyncValidatorsDebounceTime: 250,
-            disabled: false,
-            touched: false),
-        countriesControlName: FormArray<String>(
-            (newsFilterModel?.countries ?? [])
-                .map((e) => FormControl<String>(
-                      value: e,
-                      validators: [],
-                      asyncValidators: [],
-                      asyncValidatorsDebounceTime: 250,
-                      disabled: false,
-                    ))
-                .toList(),
-            validators: [],
-            asyncValidators: [],
-            asyncValidatorsDebounceTime: 250,
-            disabled: false),
-        sourcesControlName: FormArray<Source>(
-            (newsFilterModel?.sources ?? [])
-                .map((e) => FormControl<Source>(
-                      value: e,
-                      validators: [],
-                      asyncValidators: [],
-                      asyncValidatorsDebounceTime: 250,
-                      disabled: false,
-                    ))
-                .toList(),
-            validators: [],
-            asyncValidators: [],
-            asyncValidatorsDebounceTime: 250,
-            disabled: false),
-        languagesControlName: FormArray<LanguagesEnum>(
-            (newsFilterModel?.languages ?? [])
-                .map((e) => FormControl<LanguagesEnum>(
-                      value: e,
-                      validators: [],
-                      asyncValidators: [],
-                      asyncValidatorsDebounceTime: 250,
-                      disabled: false,
-                    ))
-                .toList(),
-            validators: [],
-            asyncValidators: [],
-            asyncValidatorsDebounceTime: 250,
-            disabled: false),
-        categoriesControlName: FormArray<CategoriesEnum>(
-            (newsFilterModel?.categories ?? [])
+  static FormGroup formElements(CategoriesGroup? categoriesGroup) => FormGroup({
+        categoriesInControlName: FormArray<CategoriesEnum>(
+            (categoriesGroup?.categoriesIn ?? [])
                 .map((e) => FormControl<CategoriesEnum>(
                       value: e,
                       validators: [],
@@ -1088,29 +2363,32 @@ class NewsFilterModelForm implements FormModel<NewsFilterModel> {
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
             disabled: false),
-        limitControlName: FormControl<int>(
-            value: newsFilterModel?.limit,
-            validators: [max100Validator, min1Validator],
-            asyncValidators: [],
-            asyncValidatorsDebounceTime: 250,
-            disabled: false,
-            touched: false),
-        offsetControlName: FormControl<int>(
-            value: newsFilterModel?.offset,
+        categoriesOutControlName: FormArray<CategoriesEnum>(
+            (categoriesGroup?.categoriesOut ?? [])
+                .map((e) => FormControl<CategoriesEnum>(
+                      value: e,
+                      validators: [],
+                      asyncValidators: [],
+                      asyncValidatorsDebounceTime: 250,
+                      disabled: false,
+                    ))
+                .toList(),
             validators: [],
             asyncValidators: [],
             asyncValidatorsDebounceTime: 250,
-            disabled: false,
-            touched: false)
+            disabled: false)
       },
-          validators: [],
+          validators: [
+            correctListValidator
+          ],
           asyncValidators: [],
           asyncValidatorsDebounceTime: 250,
           disabled: false);
 }
 
-class ReactiveNewsFilterModelFormArrayBuilder<T> extends StatelessWidget {
-  const ReactiveNewsFilterModelFormArrayBuilder({
+class ReactiveNewsFilterReactiveModelFormArrayBuilder<T>
+    extends StatelessWidget {
+  const ReactiveNewsFilterReactiveModelFormArrayBuilder({
     Key? key,
     this.control,
     this.formControl,
@@ -1122,18 +2400,17 @@ class ReactiveNewsFilterModelFormArrayBuilder<T> extends StatelessWidget {
 
   final FormArray<T>? formControl;
 
-  final FormArray<T>? Function(NewsFilterModelForm formModel)? control;
+  final FormArray<T>? Function(NewsFilterReactiveModelForm formModel)? control;
 
   final Widget Function(BuildContext context, List<Widget> itemList,
-      NewsFilterModelForm formModel)? builder;
+      NewsFilterReactiveModelForm formModel)? builder;
 
-  final Widget Function(
-          BuildContext context, int i, T? item, NewsFilterModelForm formModel)
-      itemBuilder;
+  final Widget Function(BuildContext context, int i, T? item,
+      NewsFilterReactiveModelForm formModel) itemBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveNewsFilterModelForm.of(context);
+    final formModel = ReactiveNewsFilterReactiveModelForm.of(context);
 
     if (formModel == null) {
       throw FormControlParentNotFoundException(this);
@@ -1169,9 +2446,9 @@ class ReactiveNewsFilterModelFormArrayBuilder<T> extends StatelessWidget {
   }
 }
 
-class ReactiveNewsFilterModelFormFormGroupArrayBuilder<V>
+class ReactiveNewsFilterReactiveModelFormFormGroupArrayBuilder<V>
     extends StatelessWidget {
-  const ReactiveNewsFilterModelFormFormGroupArrayBuilder({
+  const ReactiveNewsFilterReactiveModelFormFormGroupArrayBuilder({
     Key? key,
     this.extended,
     this.getExtended,
@@ -1184,18 +2461,17 @@ class ReactiveNewsFilterModelFormFormGroupArrayBuilder<V>
   final ExtendedControl<List<Map<String, Object?>?>, List<V>>? extended;
 
   final ExtendedControl<List<Map<String, Object?>?>, List<V>> Function(
-      NewsFilterModelForm formModel)? getExtended;
+      NewsFilterReactiveModelForm formModel)? getExtended;
 
   final Widget Function(BuildContext context, List<Widget> itemList,
-      NewsFilterModelForm formModel)? builder;
+      NewsFilterReactiveModelForm formModel)? builder;
 
-  final Widget Function(
-          BuildContext context, int i, V? item, NewsFilterModelForm formModel)
-      itemBuilder;
+  final Widget Function(BuildContext context, int i, V? item,
+      NewsFilterReactiveModelForm formModel) itemBuilder;
 
   @override
   Widget build(BuildContext context) {
-    final formModel = ReactiveNewsFilterModelForm.of(context);
+    final formModel = ReactiveNewsFilterReactiveModelForm.of(context);
 
     if (formModel == null) {
       throw FormControlParentNotFoundException(this);
